@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.90.3),
-    on Tue Aug 21 11:00:17 2018
+    on Tue Aug 21 22:28:30 2018
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -40,7 +40,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath=u'/Users/nope/ownCloud/work/uka/code/psychoPy/psychoPy-tetris/tetris_test.psyexp',
+    originPath=u'/Users/zen/ownCloud/work/uka/code/psychoPy/psychoPy-tetris/tetris_test.psyexp',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -82,17 +82,25 @@ text_2 = visual.TextStim(win=win, name='text_2',
     pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=0.0);
-rating = visual.RatingScale(win=win, name='rating', marker='triangle', size=1.0, pos=[0.0, -0.4], low=1, high=7, labels=[''], scale='')
+rating = visual.RatingScale(win=win, name='rating', marker=u'triangle', size=1.0, pos=[0.0, -0.4], low=1, high=50, labels=[u''], scale=u'')
 
 # Initialize components for Routine "tetris"
 tetrisClock = core.Clock()
 text_3 = visual.TextStim(win=win, name='text_3',
-    text='Any text\n\nincluding line breaks\ntetris',
-    font='Arial',
+    text=u'Tetris finished\nit returned\n',
+    font=u'Arial',
     pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    color=u'white', colorSpace='rgb', opacity=1,
     depth=0.0);
 import tetris
+
+
+text_val = visual.TextStim(win=win, name='text_val',
+    text='default text',
+    font=u'Arial',
+    pos=(0, -0.3), height=0.5, wrapWidth=None, ori=0, 
+    color=u'white', colorSpace='rgb', opacity=1,
+    depth=-3.0);
 
 # Initialize components for Routine "bye"
 byeClock = core.Clock()
@@ -114,13 +122,13 @@ frameN = -1
 continueRoutine = True
 # update component parameters for each repeat
 key_resp_1 = event.BuilderKeyResponse()
-logging.data("STARTED logging.data")
-logging.exp("STARTED logging.exp")
-logging.info("STARTED logging.info")
-thisExp.addData('welcome', 'Hello World')
-thisExp.addData('welcome.time', 42)
+#logging.data("STARTED logging.data")
+#logging.exp("STARTED logging.exp")
+#logging.info("STARTED logging.info")
+#thisExp.addData('welcome', 'Hello World')
+#thisExp.addData('welcome.time', 42)
 
-thisExp.nextEntry()
+#thisExp.nextEntry()
 
 # keep track of which components have finished
 welcomeComponents = [text, key_resp_1]
@@ -271,13 +279,14 @@ key_resp_3 = event.BuilderKeyResponse()
 # thread01.join()
 # print '\n\nThread finished!'
 
-thisExp.addData('tetris.score', 41)
-thisExp.addData('tetris.event', 'Thing A happened')
+print('\nStarting Tetris now\n')
 
-tetris.main()
+returnval = tetris.main(rating.getRating(), thisExp)
+
+print('Tetris returned: %d' %returnval)
 
 # keep track of which components have finished
-tetrisComponents = [text_3, key_resp_3]
+tetrisComponents = [text_3, key_resp_3, text_val]
 for thisComponent in tetrisComponents:
     if hasattr(thisComponent, 'status'):
         thisComponent.status = NOT_STARTED
@@ -317,6 +326,15 @@ while continueRoutine:
             # a response ends the routine
             continueRoutine = False
     
+    
+    # *text_val* updates
+    if t >= 0.0 and text_val.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        text_val.tStart = t
+        text_val.frameNStart = frameN  # exact frame index
+        text_val.setAutoDraw(True)
+    if text_val.status == STARTED:  # only update if drawing
+        text_val.setText(returnval, log=False)
     
     # check if all components have finished
     if not continueRoutine:  # a component has requested a forced-end of Routine

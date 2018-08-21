@@ -340,7 +340,7 @@ def check(board,screen):
             rows = map(lambda y: y+1,rows)
     return lrows
 
-def game(screen,startinglevel):
+def game(screen, startinglevel, startTime, thisExp):
     """
     The tetris-game itself. Handles user input to move, etc.
     """
@@ -360,13 +360,17 @@ def game(screen,startinglevel):
     white = getrgb("#FFFFFF")
 
     while True:
+        if time.time() - startTime > 50:
+            thisExp.addData('tetris.score', cleared)
+            return -5
+
         level = cleared/10 + startinglevel
         # amount of time in-between automatic block movements down
         timeinterval = 0.75*(0.95**level)
         for event in pygame.event.get():
             # keystroke handling
             if event.type == pygame.QUIT:
-                exit(0)
+                return -1
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_DOWN:
                     shapemove(tetrimino,board,0,1)
@@ -376,16 +380,20 @@ def game(screen,startinglevel):
                     shapemove(tetrimino,board,1,0)
                 elif event.key == pygame.K_UP:
                     shaperotate(tetrimino,board)
-                elif event.key == pygame.K_ESCAPE:
-                    exit(0)
-                elif event.key == pygame.K_n:
-                    return 1
-                elif event.key == pygame.K_m:
-                    return 9
-                elif event.key == pygame.K_p:
-                    pause(screen)
+                elif event.key == pygame.K_q:
+                    thisExp.addData('tetris.score', cleared)
+                    return -1
+                    # exit(0)
+                # elif event.key == pygame.K_n:
+                #     return 1
+                # elif event.key == pygame.K_m:
+                #     return 9
+                # elif event.key == pygame.K_p:
+                #     pause(screen)
                 elif event.key == pygame.K_SPACE:
+
                     drop(tetrimino,board)
+
 
         # check for full lines and clears them
         x = 0
@@ -418,8 +426,9 @@ def game(screen,startinglevel):
             # check if the new piece has space to be spawned. else: gameover
             for (x,y) in coords:
                 if board[x][y]!='':
-                    returnstatus = gameover(screen)
-                    return returnstatus
+                    # returnstatus = gameover(screen)
+                    thisExp.addData('tetris.score', cleared)
+                    return 1
         else:
             # check if the piece should be moved down
             newt = time.time()
@@ -439,10 +448,13 @@ def game(screen,startinglevel):
         leveltext = bottom.render("Level: " + str(level+1),1,white)
         clearedtext = bottom.render("Lines: " + str(cleared),1,white)
         besttext = bottom.render("Best: " + str(bestscore),1,white)
+        timetext = bottom.render("Time Remaining: %02d" %(50 - (time.time()-startTime)),1,white)
+
 
         screen.blit(leveltext,(10,675))
-        screen.blit(clearedtext,((341-clearedtext.get_rect().width)/2,675))
-        screen.blit(besttext,(331-(besttext.get_rect().width),675))
+        screen.blit(clearedtext,((250-clearedtext.get_rect().width)/2,675))
+        screen.blit(timetext,(331-(timetext.get_rect().width),675))
+
 
         # blit the known blocks
         blitboard(board,screen)
@@ -452,39 +464,9 @@ def game(screen,startinglevel):
             screen.blit(getimg(block), block.getposn())
         pygame.display.flip()
 
-def start(screen):
-    """
-    Blits the start-menu.
-    """
-    title = pygame.font.Font('BebasNeue.ttf',72)
-    instruct = pygame.font.Font('BebasNeue.ttf',26)
-    color = getrgb("#FFFFFF")
-    screen.fill(getrgb("#000000"))
-    lines = ['Hit ENTER to play',"ESC to quit","P to pause",
-             "N for new game", "L to change starting level",
-             "M for main menu", "Arrow keys and space to move"]
 
-    tetris = title.render("TETRIS",1,color)
-    whitelines = [instruct.render(i,1,color) for i in lines]
-    posns = [(93,246),(121,293),(124,340),(102,387),(50,481),(98,434),(34,528)]
-    screen.blit(tetris,(95,139))
-    for i in range(len(posns)):
-        screen.blit(whitelines[i],posns[i])
-    pygame.display.flip()
-    while True:
-        # keystroke handling
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                exit(0)
-            if event.type == pygame.KEYDOWN:
-                if (event.key == pygame.K_RETURN) or (event.key == pygame.K_n):
-                    return 0
-                elif event.key == pygame.K_l:
-                    return getlevel(screen,color,instruct)
-                elif event.key == pygame.K_ESCAPE:
-                    exit(0)
 
-def main():
+def main(startingLevel, thisExp):
     makeblockimages()
     pygame.init()
     size = (341,700)
@@ -492,12 +474,40 @@ def main():
 
     makelines()
 
+    startTime = time.time()
+    trial = 0
+
     while True:
-        startinglevel = start(screen)
-        while True:
-            x = game(screen,startinglevel)
-            if x==9:
-                break
+
+        # run for at least 50
+        trial += 1
+
+        thisExp.addData('tetris.level', startingLevel)
+        thisExp.addData('tetris.trial', trial)
+
+
+        x = game(screen, startingLevel, startTime, thisExp)
+
+
+
+        if x == -1: # pressed escape
+            thisExp.addData('tetris.quit', 'pressed Q')
+            thisExp.nextEntry()
+            print("ESC: killing")
+            pygame.quit()
+            return x
+        elif x == 1: # gameover, repeat if time not elapsed
+            print("Gameover")
+            thisExp.addData('tetris.quit', 'gameover')
+            thisExp.nextEntry()
+            continue
+        elif x == -5:
+            print("Time elapsed") # time elapsed, quit
+            thisExp.addData('tetris.quit', 'time elapsed')
+            thisExp.nextEntry()
+            pygame.quit()
+            return x
+
 
 
 if __name__=='__main__':
