@@ -1,4 +1,7 @@
+#!/usr/bin/env python
 # John Loeber | 26-NOV-2014 | Python 2.7.8 | x86_64 Debian Linux | www.johnloeber.com
+
+
 
 from gameproperties import gridline
 from tscore import getmaxlines, writemaxlines
@@ -8,6 +11,10 @@ from sys import exit
 from ImageColor import getrgb
 import time
 import pygame
+
+### EDIT EDIT EDIT BEG
+from psychopy import logging
+### EDIT EDIT EDIT END
 
 ################################################################################
 

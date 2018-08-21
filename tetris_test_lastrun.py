@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-This experiment was created using PsychoPy2 Experiment Builder (v1.90.1),
-    on Thu Jul 19 22:25:19 2018
+This experiment was created using PsychoPy2 Experiment Builder (v1.90.3),
+    on Tue Aug 21 11:00:17 2018
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -26,7 +26,7 @@ _thisDir = os.path.dirname(os.path.abspath(__file__)).decode(sys.getfilesystemen
 os.chdir(_thisDir)
 
 # Store info about the experiment session
-expName = u'tetris_test'  # from the Builder filename that created this script
+expName = 'tetris_test'  # from the Builder filename that created this script
 expInfo = {u'session': u'001', u'participant': u''}
 dlg = gui.DlgFromDict(dictionary=expInfo, title=expName)
 if dlg.OK == False:
@@ -40,7 +40,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath=u'/Users/zen/ownCloud/work/uka/code/psychoPy/psychoPy-tetris/tetris_test.psyexp',
+    originPath=u'/Users/nope/ownCloud/work/uka/code/psychoPy/psychoPy-tetris/tetris_test.psyexp',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -55,7 +55,7 @@ endExpNow = False  # flag for 'escape' or other condition => quit the exp
 win = visual.Window(
     size=[1600, 900], fullscr=False, screen=0,
     allowGUI=True, allowStencil=False,
-    monitor=u'testMonitor', color=[0,0,0], colorSpace='rgb',
+    monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
     blendMode='avg', useFBO=True)
 # store frame rate of monitor if we can measure it
 expInfo['frameRate'] = win.getActualFrameRate()
@@ -73,6 +73,7 @@ text = visual.TextStim(win=win, name='text',
     color='white', colorSpace='rgb', opacity=1,
     depth=0.0);
 
+
 # Initialize components for Routine "trial"
 trialClock = core.Clock()
 text_2 = visual.TextStim(win=win, name='text_2',
@@ -81,6 +82,7 @@ text_2 = visual.TextStim(win=win, name='text_2',
     pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=0.0);
+rating = visual.RatingScale(win=win, name='rating', marker='triangle', size=1.0, pos=[0.0, -0.4], low=1, high=7, labels=[''], scale='')
 
 # Initialize components for Routine "tetris"
 tetrisClock = core.Clock()
@@ -91,7 +93,6 @@ text_3 = visual.TextStim(win=win, name='text_3',
     color='white', colorSpace='rgb', opacity=1,
     depth=0.0);
 import tetris
-from threading import Thread
 
 # Initialize components for Routine "bye"
 byeClock = core.Clock()
@@ -112,9 +113,17 @@ welcomeClock.reset()  # clock
 frameN = -1
 continueRoutine = True
 # update component parameters for each repeat
-key_resp_3 = event.BuilderKeyResponse()
+key_resp_1 = event.BuilderKeyResponse()
+logging.data("STARTED logging.data")
+logging.exp("STARTED logging.exp")
+logging.info("STARTED logging.info")
+thisExp.addData('welcome', 'Hello World')
+thisExp.addData('welcome.time', 42)
+
+thisExp.nextEntry()
+
 # keep track of which components have finished
-welcomeComponents = [text, key_resp_3]
+welcomeComponents = [text, key_resp_1]
 for thisComponent in welcomeComponents:
     if hasattr(thisComponent, 'status'):
         thisComponent.status = NOT_STARTED
@@ -133,26 +142,27 @@ while continueRoutine:
         text.frameNStart = frameN  # exact frame index
         text.setAutoDraw(True)
     
-    # *key_resp_3* updates
-    if t >= 0.0 and key_resp_3.status == NOT_STARTED:
+    # *key_resp_1* updates
+    if t >= 0.0 and key_resp_1.status == NOT_STARTED:
         # keep track of start time/frame for later
-        key_resp_3.tStart = t
-        key_resp_3.frameNStart = frameN  # exact frame index
-        key_resp_3.status = STARTED
+        key_resp_1.tStart = t
+        key_resp_1.frameNStart = frameN  # exact frame index
+        key_resp_1.status = STARTED
         # keyboard checking is just starting
-        win.callOnFlip(key_resp_3.clock.reset)  # t=0 on next screen flip
+        win.callOnFlip(key_resp_1.clock.reset)  # t=0 on next screen flip
         event.clearEvents(eventType='keyboard')
-    if key_resp_3.status == STARTED:
+    if key_resp_1.status == STARTED:
         theseKeys = event.getKeys(keyList=['y', 'n', 'left', 'right', 'space'])
         
         # check for quit:
         if "escape" in theseKeys:
             endExpNow = True
         if len(theseKeys) > 0:  # at least one key was pressed
-            key_resp_3.keys = theseKeys[-1]  # just the last key pressed
-            key_resp_3.rt = key_resp_3.clock.getTime()
+            key_resp_1.keys = theseKeys[-1]  # just the last key pressed
+            key_resp_1.rt = key_resp_1.clock.getTime()
             # a response ends the routine
             continueRoutine = False
+    
     
     # check if all components have finished
     if not continueRoutine:  # a component has requested a forced-end of Routine
@@ -176,12 +186,13 @@ for thisComponent in welcomeComponents:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
 # check responses
-if key_resp_3.keys in ['', [], None]:  # No response was made
-    key_resp_3.keys=None
-thisExp.addData('key_resp_3.keys',key_resp_3.keys)
-if key_resp_3.keys != None:  # we had a response
-    thisExp.addData('key_resp_3.rt', key_resp_3.rt)
+if key_resp_1.keys in ['', [], None]:  # No response was made
+    key_resp_1.keys=None
+thisExp.addData('key_resp_1.keys',key_resp_1.keys)
+if key_resp_1.keys != None:  # we had a response
+    thisExp.addData('key_resp_1.rt', key_resp_1.rt)
 thisExp.nextEntry()
+
 # the Routine "welcome" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
@@ -191,9 +202,9 @@ trialClock.reset()  # clock
 frameN = -1
 continueRoutine = True
 # update component parameters for each repeat
-key_resp_2 = event.BuilderKeyResponse()
+rating.reset()
 # keep track of which components have finished
-trialComponents = [text_2, key_resp_2]
+trialComponents = [text_2, rating]
 for thisComponent in trialComponents:
     if hasattr(thisComponent, 'status'):
         thisComponent.status = NOT_STARTED
@@ -211,27 +222,13 @@ while continueRoutine:
         text_2.tStart = t
         text_2.frameNStart = frameN  # exact frame index
         text_2.setAutoDraw(True)
-    
-    # *key_resp_2* updates
-    if t >= 0.0 and key_resp_2.status == NOT_STARTED:
+    # *rating* updates
+    if t >= 0.0 and rating.status == NOT_STARTED:
         # keep track of start time/frame for later
-        key_resp_2.tStart = t
-        key_resp_2.frameNStart = frameN  # exact frame index
-        key_resp_2.status = STARTED
-        # keyboard checking is just starting
-        win.callOnFlip(key_resp_2.clock.reset)  # t=0 on next screen flip
-        event.clearEvents(eventType='keyboard')
-    if key_resp_2.status == STARTED:
-        theseKeys = event.getKeys(keyList=['y', 'n', 'left', 'right', 'space'])
-        
-        # check for quit:
-        if "escape" in theseKeys:
-            endExpNow = True
-        if len(theseKeys) > 0:  # at least one key was pressed
-            key_resp_2.keys = theseKeys[-1]  # just the last key pressed
-            key_resp_2.rt = key_resp_2.clock.getTime()
-            # a response ends the routine
-            continueRoutine = False
+        rating.tStart = t
+        rating.frameNStart = frameN  # exact frame index
+        rating.setAutoDraw(True)
+    continueRoutine &= rating.noResponse  # a response ends the trial
     
     # check if all components have finished
     if not continueRoutine:  # a component has requested a forced-end of Routine
@@ -254,12 +251,9 @@ while continueRoutine:
 for thisComponent in trialComponents:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
-# check responses
-if key_resp_2.keys in ['', [], None]:  # No response was made
-    key_resp_2.keys=None
-thisExp.addData('key_resp_2.keys',key_resp_2.keys)
-if key_resp_2.keys != None:  # we had a response
-    thisExp.addData('key_resp_2.rt', key_resp_2.rt)
+# store data for thisExp (ExperimentHandler)
+thisExp.addData('rating.response', rating.getRating())
+thisExp.addData('rating.rt', rating.getRT())
 thisExp.nextEntry()
 # the Routine "trial" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
@@ -270,14 +264,20 @@ tetrisClock.reset()  # clock
 frameN = -1
 continueRoutine = True
 # update component parameters for each repeat
-key_resp_4 = event.BuilderKeyResponse()
-thread01 = Thread(target = tetris.mainStart, args=[])
-print 'Starting thread ...\n\n'
-thread01.start()
-thread01.join()
-print '\n\nThread finished!'
+key_resp_3 = event.BuilderKeyResponse()
+# thread01 = Thread(target = tetris.main, args=[])
+# print 'Starting thread ...\n\n'
+# thread01.start()
+# thread01.join()
+# print '\n\nThread finished!'
+
+thisExp.addData('tetris.score', 41)
+thisExp.addData('tetris.event', 'Thing A happened')
+
+tetris.main()
+
 # keep track of which components have finished
-tetrisComponents = [text_3, key_resp_4]
+tetrisComponents = [text_3, key_resp_3]
 for thisComponent in tetrisComponents:
     if hasattr(thisComponent, 'status'):
         thisComponent.status = NOT_STARTED
@@ -296,24 +296,24 @@ while continueRoutine:
         text_3.frameNStart = frameN  # exact frame index
         text_3.setAutoDraw(True)
     
-    # *key_resp_4* updates
-    if t >= 0.0 and key_resp_4.status == NOT_STARTED:
+    # *key_resp_3* updates
+    if t >= 0.0 and key_resp_3.status == NOT_STARTED:
         # keep track of start time/frame for later
-        key_resp_4.tStart = t
-        key_resp_4.frameNStart = frameN  # exact frame index
-        key_resp_4.status = STARTED
+        key_resp_3.tStart = t
+        key_resp_3.frameNStart = frameN  # exact frame index
+        key_resp_3.status = STARTED
         # keyboard checking is just starting
-        win.callOnFlip(key_resp_4.clock.reset)  # t=0 on next screen flip
+        win.callOnFlip(key_resp_3.clock.reset)  # t=0 on next screen flip
         event.clearEvents(eventType='keyboard')
-    if key_resp_4.status == STARTED:
+    if key_resp_3.status == STARTED:
         theseKeys = event.getKeys(keyList=['y', 'n', 'left', 'right', 'space'])
         
         # check for quit:
         if "escape" in theseKeys:
             endExpNow = True
         if len(theseKeys) > 0:  # at least one key was pressed
-            key_resp_4.keys = theseKeys[-1]  # just the last key pressed
-            key_resp_4.rt = key_resp_4.clock.getTime()
+            key_resp_3.keys = theseKeys[-1]  # just the last key pressed
+            key_resp_3.rt = key_resp_3.clock.getTime()
             # a response ends the routine
             continueRoutine = False
     
@@ -340,11 +340,11 @@ for thisComponent in tetrisComponents:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
 # check responses
-if key_resp_4.keys in ['', [], None]:  # No response was made
-    key_resp_4.keys=None
-thisExp.addData('key_resp_4.keys',key_resp_4.keys)
-if key_resp_4.keys != None:  # we had a response
-    thisExp.addData('key_resp_4.rt', key_resp_4.rt)
+if key_resp_3.keys in ['', [], None]:  # No response was made
+    key_resp_3.keys=None
+thisExp.addData('key_resp_3.keys',key_resp_3.keys)
+if key_resp_3.keys != None:  # we had a response
+    thisExp.addData('key_resp_3.rt', key_resp_3.rt)
 thisExp.nextEntry()
 
 # the Routine "tetris" was not non-slip safe, so reset the non-slip timer
@@ -356,9 +356,9 @@ byeClock.reset()  # clock
 frameN = -1
 continueRoutine = True
 # update component parameters for each repeat
-key_resp_5 = event.BuilderKeyResponse()
+key_resp_4 = event.BuilderKeyResponse()
 # keep track of which components have finished
-byeComponents = [text_4, key_resp_5]
+byeComponents = [text_4, key_resp_4]
 for thisComponent in byeComponents:
     if hasattr(thisComponent, 'status'):
         thisComponent.status = NOT_STARTED
@@ -377,24 +377,24 @@ while continueRoutine:
         text_4.frameNStart = frameN  # exact frame index
         text_4.setAutoDraw(True)
     
-    # *key_resp_5* updates
-    if t >= 0.0 and key_resp_5.status == NOT_STARTED:
+    # *key_resp_4* updates
+    if t >= 0.0 and key_resp_4.status == NOT_STARTED:
         # keep track of start time/frame for later
-        key_resp_5.tStart = t
-        key_resp_5.frameNStart = frameN  # exact frame index
-        key_resp_5.status = STARTED
+        key_resp_4.tStart = t
+        key_resp_4.frameNStart = frameN  # exact frame index
+        key_resp_4.status = STARTED
         # keyboard checking is just starting
-        win.callOnFlip(key_resp_5.clock.reset)  # t=0 on next screen flip
+        win.callOnFlip(key_resp_4.clock.reset)  # t=0 on next screen flip
         event.clearEvents(eventType='keyboard')
-    if key_resp_5.status == STARTED:
+    if key_resp_4.status == STARTED:
         theseKeys = event.getKeys(keyList=['y', 'n', 'left', 'right', 'space'])
         
         # check for quit:
         if "escape" in theseKeys:
             endExpNow = True
         if len(theseKeys) > 0:  # at least one key was pressed
-            key_resp_5.keys = theseKeys[-1]  # just the last key pressed
-            key_resp_5.rt = key_resp_5.clock.getTime()
+            key_resp_4.keys = theseKeys[-1]  # just the last key pressed
+            key_resp_4.rt = key_resp_4.clock.getTime()
             # a response ends the routine
             continueRoutine = False
     
@@ -420,14 +420,15 @@ for thisComponent in byeComponents:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
 # check responses
-if key_resp_5.keys in ['', [], None]:  # No response was made
-    key_resp_5.keys=None
-thisExp.addData('key_resp_5.keys',key_resp_5.keys)
-if key_resp_5.keys != None:  # we had a response
-    thisExp.addData('key_resp_5.rt', key_resp_5.rt)
+if key_resp_4.keys in ['', [], None]:  # No response was made
+    key_resp_4.keys=None
+thisExp.addData('key_resp_4.keys',key_resp_4.keys)
+if key_resp_4.keys != None:  # we had a response
+    thisExp.addData('key_resp_4.rt', key_resp_4.rt)
 thisExp.nextEntry()
 # the Routine "bye" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
+
 
 # these shouldn't be strictly necessary (should auto-save)
 thisExp.saveAsWideText(filename+'.csv')
