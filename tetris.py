@@ -352,6 +352,7 @@ def game(screen, startinglevel, startTime, thisExp, olf_event):
     """
     cleared = 0
     pieces = 0
+    space_pressed = 0
     global OLF_STATUS
 
 
@@ -375,6 +376,7 @@ def game(screen, startinglevel, startTime, thisExp, olf_event):
         elapsed_time = time.time() - startTime
 
         if elapsed_time > 28 and OLF_STATUS != 'ON':
+            print("TURNING OLF ON! SETTING EVENT")
             OLF_STATUS = 'ON'
             thisExp.addData('tetris.olf_on-time', elapsed_time)
             olf_event.set()
@@ -382,8 +384,10 @@ def game(screen, startinglevel, startTime, thisExp, olf_event):
 
         # game over
         if elapsed_time > 56:
+            olf_event.clear()
             thisExp.addData('tetris.score', cleared)
             thisExp.addData('tetris.dropped_pieces', pieces)
+            thisExp.addData('tetris.space_pressed', space_pressed)
             thisExp.addData('tetris.elapsed_time', elapsed_time)
             return -5
 
@@ -406,9 +410,11 @@ def game(screen, startinglevel, startTime, thisExp, olf_event):
                 elif event.key == pygame.K_q:
                     thisExp.addData('tetris.score', cleared)
                     thisExp.addData('tetris.dropped_pieces', pieces)
+                    thisExp.addData('tetris.space_pressed', space_pressed)
                     thisExp.addData('tetris.elapsed_time', elapsed_time)
                     return -1
                 elif event.key == pygame.K_SPACE:
+                    space_pressed += 1
                     drop(tetrimino,board)
 
 
@@ -447,6 +453,7 @@ def game(screen, startinglevel, startTime, thisExp, olf_event):
                     # returnstatus = gameover(screen)
                     thisExp.addData('tetris.score', cleared)
                     thisExp.addData('tetris.dropped_pieces', pieces)
+                    thisExp.addData('tetris.space_pressed', space_pressed)
                     thisExp.addData('tetris.elapsed_time', elapsed_time)
 
                     return 1
@@ -488,17 +495,23 @@ def game(screen, startinglevel, startTime, thisExp, olf_event):
 
 def startOLF(olf_event, olf, com_channel):
 
+    print('Starting Thread startOLF\n Channel: %d'%com_channel)
+
     olf_event.wait()
     for i in range(0,7):
+        print('THREAD LOOP BEG startOLF\n Channel: %d'%com_channel)
         olf.write(b"\nF%d\r" %com_channel)
         time.sleep(2.0)
         olf.write(b"\nF%d\r" %com_channel)
         time.sleep(2.0)
+        print('THREAD LOOP END startOLF\n Channel: %d'%com_channel)
+
+    print('KILLING Thread startOLF\n Channel: %d'%com_channel)
 
 
 
 
-def main(startingLevel, thisExp, com_port, com_channel):
+def main(startingLevel, thisExp, olf_serial, com_channel):
     makeblockimages()
     pygame.init()
     size = (341,700)
@@ -510,11 +523,16 @@ def main(startingLevel, thisExp, com_port, com_channel):
     trial = 0
 
 
-    olf = serial.Serial(com_port, 19200, timeout=0.5)
+    # olf = serial.Serial(com_port, 19200, timeout=0.5)
+    olf = olf_serial
 
     olf_event = Event()
-    olf_thread = Thread(target=startOLF, args=[olf_event, olf, com_channel])
-    olf_thread.start()
+    if olf != 'none':
+        olf_thread = Thread(target=startOLF, args=[olf_event, olf, com_channel])
+        olf_thread.start()
+
+    global OLF_STATUS
+
 
 
     while True:
@@ -532,10 +550,12 @@ def main(startingLevel, thisExp, com_port, com_channel):
 
 
         if x == -1: # pressed escape
-            thisExp.addData('tetris.quit', 'pressed Q')
+            thisExp.addData('tetris.quit', 'pressed q')
             thisExp.nextEntry()
             print("ESC: killing")
-            olf_thread.join()
+            if olf != 'none':
+                olf_thread.join()
+            OLF_STATUS = 'UNINITIALIZED'
             pygame.quit()
             return x
         elif x == 1: # gameover, repeat if time not elapsed
@@ -547,7 +567,9 @@ def main(startingLevel, thisExp, com_port, com_channel):
             print("Time elapsed") # time elapsed, quit
             thisExp.addData('tetris.quit', 'time elapsed')
             thisExp.nextEntry()
-            olf_thread.join()
+            if olf != 'none':
+                olf_thread.join()
+            OLF_STATUS = 'UNINITIALIZED'
             pygame.quit()
             return x
 
