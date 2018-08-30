@@ -12,9 +12,12 @@ from ImageColor import getrgb
 import time
 import pygame
 
-### EDIT EDIT EDIT BEG
+
 from psychopy import logging
-### EDIT EDIT EDIT END
+from threading import Lock, Thread, Event
+
+
+import serial
 
 ################################################################################
 
@@ -340,11 +343,14 @@ def check(board,screen):
             rows = map(lambda y: y+1,rows)
     return lrows
 
-def game(screen, startinglevel, startTime, thisExp):
+def game(screen, startinglevel, startTime, thisExp, olf_event):
     """
     The tetris-game itself. Handles user input to move, etc.
     """
     cleared = 0
+    pieces = 0
+
+
     tetrimino = newtetrimino()
     bestscore = int(getmaxlines())
 
@@ -360,8 +366,19 @@ def game(screen, startinglevel, startTime, thisExp):
     white = getrgb("#FFFFFF")
 
     while True:
-        if time.time() - startTime > 50:
+        elapsed_time = time.time() - startTime
+
+        if elapsed_time > 26 and olf_status != 'ON':
+            olf_status = 'ON'
+            thisExp.addData('tetris.olf_on-time', elapsed_time)
+            olf_event.set()
+
+
+        # game over
+        if elapsed_time > 52:
             thisExp.addData('tetris.score', cleared)
+            thisExp.addData('tetris.dopped_pieces', pieces)
+            thisExp.addData('tetris.elapsed_time', elapsed_time)
             return -5
 
         level = cleared/10 + startinglevel
@@ -382,16 +399,10 @@ def game(screen, startinglevel, startTime, thisExp):
                     shaperotate(tetrimino,board)
                 elif event.key == pygame.K_q:
                     thisExp.addData('tetris.score', cleared)
+                    thisExp.addData('tetris.dopped_pieces', pieces)
+                    thisExp.addData('tetris.elapsed_time', elapsed_time)
                     return -1
-                    # exit(0)
-                # elif event.key == pygame.K_n:
-                #     return 1
-                # elif event.key == pygame.K_m:
-                #     return 9
-                # elif event.key == pygame.K_p:
-                #     pause(screen)
                 elif event.key == pygame.K_SPACE:
-
                     drop(tetrimino,board)
 
 
@@ -417,6 +428,7 @@ def game(screen, startinglevel, startTime, thisExp):
             except:
                 print "Unexpected Error"
         if newpiece:
+            pieces += 1
             # if a new piece is spawned, then we write the current piece
             # to the board.
             for t in tetrimino.blocks():
@@ -428,6 +440,9 @@ def game(screen, startinglevel, startTime, thisExp):
                 if board[x][y]!='':
                     # returnstatus = gameover(screen)
                     thisExp.addData('tetris.score', cleared)
+                    thisExp.addData('tetris.dopped_pieces', pieces)
+                    thisExp.addData('tetris.elapsed_time', elapsed_time)
+
                     return 1
         else:
             # check if the piece should be moved down
@@ -465,8 +480,18 @@ def game(screen, startinglevel, startTime, thisExp):
         pygame.display.flip()
 
 
+def startOLF(olf_event, olf, com_channel):
 
-def main(startingLevel, thisExp):
+    olf_event.wait()
+    for i in range(0,13):
+        olf.write(b"\nF%d\r" %com_channel)
+        time.sleep(2.0)
+        olf.write(b"\nF%d\r" %com_channel)
+
+
+
+
+def main(startingLevel, thisExp, com_port, com_channel):
     makeblockimages()
     pygame.init()
     size = (341,700)
@@ -477,16 +502,25 @@ def main(startingLevel, thisExp):
     startTime = time.time()
     trial = 0
 
+
+    olf = serial.Serial(com_port, 19200, timeout=0.5)
+
+    olf_event = Event()
+    olf_thread = Thread(target=startOLF, args=[olf_event, olf, com_channel])
+    olf_thread.start()
+
+
     while True:
 
         # run for at least 50
         trial += 1
 
+
         thisExp.addData('tetris.level', startingLevel)
         thisExp.addData('tetris.trial', trial)
 
 
-        x = game(screen, startingLevel, startTime, thisExp)
+        x = game(screen, startingLevel, startTime, thisExp, olf_event)
 
 
 
@@ -494,6 +528,7 @@ def main(startingLevel, thisExp):
             thisExp.addData('tetris.quit', 'pressed Q')
             thisExp.nextEntry()
             print("ESC: killing")
+            olf_thread.join()
             pygame.quit()
             return x
         elif x == 1: # gameover, repeat if time not elapsed
@@ -505,6 +540,7 @@ def main(startingLevel, thisExp):
             print("Time elapsed") # time elapsed, quit
             thisExp.addData('tetris.quit', 'time elapsed')
             thisExp.nextEntry()
+            olf_thread.join()
             pygame.quit()
             return x
 

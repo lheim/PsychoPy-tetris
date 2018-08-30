@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.90.3),
-    on Tue Aug 21 22:28:30 2018
+    on Thu Aug 30 12:15:22 2018
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -40,7 +40,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath=u'/Users/zen/ownCloud/work/uka/code/psychoPy/psychoPy-tetris/tetris_test.psyexp',
+    originPath=u'/Users/nope/ownCloud/work/uka/code/psychoPy/psychoPy-tetris/tetris_test.psyexp',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -82,24 +82,24 @@ text_2 = visual.TextStim(win=win, name='text_2',
     pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=0.0);
-rating = visual.RatingScale(win=win, name='rating', marker=u'triangle', size=1.0, pos=[0.0, -0.4], low=1, high=50, labels=[u''], scale=u'')
+rating = visual.RatingScale(win=win, name='rating', marker='triangle', size=1.0, pos=[0.0, -0.4], low=1, high=50, labels=[''], scale='')
 
 # Initialize components for Routine "tetris"
 tetrisClock = core.Clock()
 text_3 = visual.TextStim(win=win, name='text_3',
-    text=u'Tetris finished\nit returned\n',
-    font=u'Arial',
+    text='Tetris finished\nit returned\n',
+    font='Arial',
     pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
-    color=u'white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1,
     depth=0.0);
 import tetris
 
 
 text_val = visual.TextStim(win=win, name='text_val',
     text='default text',
-    font=u'Arial',
+    font='Arial',
     pos=(0, -0.3), height=0.5, wrapWidth=None, ori=0, 
-    color=u'white', colorSpace='rgb', opacity=1,
+    color='white', colorSpace='rgb', opacity=1,
     depth=-3.0);
 
 # Initialize components for Routine "bye"
@@ -281,7 +281,7 @@ key_resp_3 = event.BuilderKeyResponse()
 
 print('\nStarting Tetris now\n')
 
-returnval = tetris.main(rating.getRating(), thisExp)
+returnval = tetris.main(rating.getRating()-1, thisExp, 'COM4', 4)
 
 print('Tetris returned: %d' %returnval)
 
