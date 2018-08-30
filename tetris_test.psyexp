@@ -201,7 +201,7 @@
       <CodeComponent name="code">
         <Param name="Begin Experiment" updates="constant" val="import tetris&amp;#10;&amp;#10;" valType="extendedCode"/>
         <Param name="name" updates="None" val="code" valType="code"/>
-        <Param name="Begin Routine" updates="constant" val="# thread01 = Thread(target = tetris.main, args=[])&amp;#10;# print 'Starting thread ...\n\n'&amp;#10;# thread01.start()&amp;#10;# thread01.join()&amp;#10;# print '\n\nThread finished!'&amp;#10;&amp;#10;print('\nStarting Tetris now\n')&amp;#10;&amp;#10;returnval = tetris.main(rating.getRating()-1, thisExp)&amp;#10;&amp;#10;print('Tetris returned: %d' %returnval)&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="# thread01 = Thread(target = tetris.main, args=[])&amp;#10;# print 'Starting thread ...\n\n'&amp;#10;# thread01.start()&amp;#10;# thread01.join()&amp;#10;# print '\n\nThread finished!'&amp;#10;&amp;#10;print('\nStarting Tetris now\n')&amp;#10;&amp;#10;returnval = tetris.main(rating.getRating()-1, thisExp, 'COM4', 4)&amp;#10;&amp;#10;print('Tetris returned: %d' %returnval)&amp;#10;" valType="extendedCode"/>
         <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>

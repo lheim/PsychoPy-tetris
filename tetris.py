@@ -25,6 +25,9 @@ import serial
 
 blockimages = {}
 
+
+OLF_STATUS = 'UNINITIALIZED'
+
 def getimg(Block):
     """
     Returns the pygame image representing a block.
@@ -349,6 +352,9 @@ def game(screen, startinglevel, startTime, thisExp, olf_event):
     """
     cleared = 0
     pieces = 0
+    global OLF_STATUS
+
+
 
 
     tetrimino = newtetrimino()
@@ -368,16 +374,16 @@ def game(screen, startinglevel, startTime, thisExp, olf_event):
     while True:
         elapsed_time = time.time() - startTime
 
-        if elapsed_time > 26 and olf_status != 'ON':
-            olf_status = 'ON'
+        if elapsed_time > 28 and OLF_STATUS != 'ON':
+            OLF_STATUS = 'ON'
             thisExp.addData('tetris.olf_on-time', elapsed_time)
             olf_event.set()
 
 
         # game over
-        if elapsed_time > 52:
+        if elapsed_time > 56:
             thisExp.addData('tetris.score', cleared)
-            thisExp.addData('tetris.dopped_pieces', pieces)
+            thisExp.addData('tetris.dropped_pieces', pieces)
             thisExp.addData('tetris.elapsed_time', elapsed_time)
             return -5
 
@@ -399,7 +405,7 @@ def game(screen, startinglevel, startTime, thisExp, olf_event):
                     shaperotate(tetrimino,board)
                 elif event.key == pygame.K_q:
                     thisExp.addData('tetris.score', cleared)
-                    thisExp.addData('tetris.dopped_pieces', pieces)
+                    thisExp.addData('tetris.dropped_pieces', pieces)
                     thisExp.addData('tetris.elapsed_time', elapsed_time)
                     return -1
                 elif event.key == pygame.K_SPACE:
@@ -440,7 +446,7 @@ def game(screen, startinglevel, startTime, thisExp, olf_event):
                 if board[x][y]!='':
                     # returnstatus = gameover(screen)
                     thisExp.addData('tetris.score', cleared)
-                    thisExp.addData('tetris.dopped_pieces', pieces)
+                    thisExp.addData('tetris.dropped_pieces', pieces)
                     thisExp.addData('tetris.elapsed_time', elapsed_time)
 
                     return 1
@@ -463,7 +469,7 @@ def game(screen, startinglevel, startTime, thisExp, olf_event):
         leveltext = bottom.render("Level: " + str(level+1),1,white)
         clearedtext = bottom.render("Lines: " + str(cleared),1,white)
         besttext = bottom.render("Best: " + str(bestscore),1,white)
-        timetext = bottom.render("Time Remaining: %02d" %(50 - (time.time()-startTime)),1,white)
+        timetext = bottom.render("Time Remaining: %02d" %(56 - (time.time()-startTime)),1,white)
 
 
         screen.blit(leveltext,(10,675))
@@ -483,10 +489,11 @@ def game(screen, startinglevel, startTime, thisExp, olf_event):
 def startOLF(olf_event, olf, com_channel):
 
     olf_event.wait()
-    for i in range(0,13):
+    for i in range(0,7):
         olf.write(b"\nF%d\r" %com_channel)
         time.sleep(2.0)
         olf.write(b"\nF%d\r" %com_channel)
+        time.sleep(2.0)
 
 
 
