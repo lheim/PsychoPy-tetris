@@ -346,7 +346,7 @@ def check(board,screen):
             rows = map(lambda y: y+1,rows)
     return lrows
 
-def game(screen, startinglevel, startTime, thisExp, olf_event):
+def game(screen, startinglevel, runtime, startTime, thisExp, olf_event):
     """
     The tetris-game itself. Handles user input to move, etc.
     """
@@ -375,15 +375,15 @@ def game(screen, startinglevel, startTime, thisExp, olf_event):
     while True:
         elapsed_time = time.time() - startTime
 
-        if elapsed_time > 28 and OLF_STATUS != 'ON':
-            print("TURNING OLF ON! SETTING EVENT")
+        if elapsed_time > runtime/2 and OLF_STATUS != 'ON':
+            print("TURNING OLF EVENT ON! SETTING EVENT")
             OLF_STATUS = 'ON'
             thisExp.addData('tetris.olf_on-time', elapsed_time)
             olf_event.set()
 
 
         # game over
-        if elapsed_time > 56:
+        if elapsed_time > runtime:
             olf_event.clear()
             thisExp.addData('tetris.score', cleared)
             thisExp.addData('tetris.dropped_pieces', pieces)
@@ -476,7 +476,7 @@ def game(screen, startinglevel, startTime, thisExp, olf_event):
         leveltext = bottom.render("Level: " + str(level+1),1,white)
         clearedtext = bottom.render("Lines: " + str(cleared),1,white)
         besttext = bottom.render("Best: " + str(bestscore),1,white)
-        timetext = bottom.render("Time Remaining: %02d" %(56 - (time.time()-startTime)),1,white)
+        timetext = bottom.render("Time Remaining: %02d" %(runtime - (time.time()-startTime)),1,white)
 
 
         screen.blit(leveltext,(10,675))
@@ -493,17 +493,18 @@ def game(screen, startinglevel, startTime, thisExp, olf_event):
         pygame.display.flip()
 
 
-def startOLF(olf_event, olf, com_channel):
+def startOLF(olf_event, olf, com_channel, runtime):
 
     print('Starting Thread startOLF\n Channel: %d'%com_channel)
 
     olf_event.wait()
     for i in range(0,7):
         print('THREAD LOOP BEG startOLF\n Channel: %d'%com_channel)
+        #TODO: write to exp log that channel is on
         olf.write(b"\nF%d\r" %com_channel)
-        time.sleep(2.0)
+        time.sleep(runtime/4/7)
         olf.write(b"\nF%d\r" %com_channel)
-        time.sleep(2.0)
+        time.sleep(runtime/4/7)
         print('THREAD LOOP END startOLF\n Channel: %d'%com_channel)
 
     print('KILLING Thread startOLF\n Channel: %d'%com_channel)
@@ -511,7 +512,7 @@ def startOLF(olf_event, olf, com_channel):
 
 
 
-def main(startingLevel, thisExp, olf_serial, com_channel):
+def main(startingLevel, runtime, thisExp, olf_serial, com_channel):
     makeblockimages()
     pygame.init()
     size = (341,700)
@@ -528,7 +529,7 @@ def main(startingLevel, thisExp, olf_serial, com_channel):
 
     olf_event = Event()
     if olf != 'none':
-        olf_thread = Thread(target=startOLF, args=[olf_event, olf, com_channel])
+        olf_thread = Thread(target=startOLF, args=[olf_event, olf, com_channel, runtime])
         olf_thread.start()
 
     global OLF_STATUS
@@ -545,7 +546,7 @@ def main(startingLevel, thisExp, olf_serial, com_channel):
         thisExp.addData('tetris.trial', trial)
 
 
-        x = game(screen, startingLevel, startTime, thisExp, olf_event)
+        x = game(screen, startingLevel, runtime, startTime, thisExp, olf_event)
 
 
 

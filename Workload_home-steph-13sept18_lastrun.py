@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.90.2),
-    on Thu Sep 13 10:24:49 2018
+    on Thu Sep 13 12:07:32 2018
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -376,7 +376,7 @@ for thisComponent in IntroText3Components:
 routineTimer.reset()
 
 # set up handler to look after randomisation of conditions etc
-repeats = data.TrialHandler(nReps=4, method='random', 
+repeats = data.TrialHandler(nReps=1, method='random', 
     extraInfo=expInfo, originPath=-1,
     trialList=data.importConditions('workload_data.xlsx'),
     seed=None, name='repeats')
@@ -452,7 +452,9 @@ for thisRepeat in repeats:
     frameN = -1
     continueRoutine = True
     # update component parameters for each repeat
-    returnval = tetris.main(difficulty_level-1, thisExp, 'COM4', channel)
+    runtime = 5 # usualy runtime = 56
+    port = 'none'
+    returnval = tetris.main(difficulty_level-1, runtime, thisExp, port, channel)
     
     
     print('Tetris returned: %d' %returnval)
@@ -649,7 +651,7 @@ for thisRepeat in repeats:
     routineTimer.reset()
     thisExp.nextEntry()
     
-# completed 4 repeats of 'repeats'
+# completed 1 repeats of 'repeats'
 
 
 # these shouldn't be strictly necessary (should auto-save)
