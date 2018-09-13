@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<PsychoPy2experiment encoding="utf-8" version="1.90.2">
+<PsychoPy2experiment encoding="utf-8" version="1.90.3">
   <Settings>
     <Param name="Monitor" updates="None" val="testMonitor" valType="str"/>
     <Param name="color" updates="None" val="$[0,0,0]" valType="str"/>
@@ -253,6 +253,28 @@
         <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
       </TextComponent>
     </Routine>
+    <Routine name="EndText">
+      <TextComponent name="EndText1">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="EndText1" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="text" updates="constant" val="Byee..." valType="str"/>
+        <Param name="stopVal" updates="constant" val="5.0" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+      </TextComponent>
+    </Routine>
     <Routine name="rating_difficulty">
       <RatingScaleComponent name="difficulty">
         <Param name="labels" updates="constant" val="" valType="str"/>
@@ -307,9 +329,9 @@
     </Routine>
     <Routine name="Tetris">
       <CodeComponent name="code_2">
-        <Param name="Begin Experiment" updates="constant" val="import tetris&amp;#10;serial = 'none'" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="import tetris&amp;#10;serial = 'none'&amp;#10;port = 'none'&amp;#10;" valType="extendedCode"/>
         <Param name="name" updates="None" val="code_2" valType="code"/>
-        <Param name="Begin Routine" updates="constant" val="returnval = tetris.main(difficulty_level-1, thisExp, 'COM4', channel)&amp;#10;&amp;#10;&amp;#10;print('Tetris returned: %d' %returnval)&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="runtime = 5 # usualy runtime = 56&amp;#10;returnval = tetris.main(difficulty_level-1, runtime, thisExp, port, channel)&amp;#10;&amp;#10;&amp;#10;print('Tetris returned: %d' %returnval)&amp;#10;" valType="extendedCode"/>
         <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
@@ -440,7 +462,7 @@
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
-      <Param name="nReps" updates="None" val="4" valType="code"/>
+      <Param name="nReps" updates="None" val="1" valType="code"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="conditions" updates="None" val="[OrderedDict([('odor', u'Leder'), ('difficulty_level', 5), ('number_in_olf', 1)]), OrderedDict([('odor', u'Holz'), ('difficulty_level', 5), ('number_in_olf', 2)]), OrderedDict([('odor', u'Banane'), ('difficulty_level', 5), ('number_in_olf', 3)]), OrderedDict([('odor', u'Orange'), ('difficulty_level', 5), ('number_in_olf', 4)]), OrderedDict([('odor', u'Wasser'), ('difficulty_level', 5), ('number_in_olf', 7)]), OrderedDict([('odor', u'Leder'), ('difficulty_level', 25), ('number_in_olf', 1)]), OrderedDict([('odor', u'Holz'), ('difficulty_level', 25), ('number_in_olf', 2)]), OrderedDict([('odor', u'Banane'), ('difficulty_level', 25), ('number_in_olf', 3)]), OrderedDict([('odor', u'Orange'), ('difficulty_level', 25), ('number_in_olf', 4)]), OrderedDict([('odor', u'Wasser'), ('difficulty_level', 25), ('number_in_olf', 7)])]" valType="str"/>
       <Param name="Selected rows" updates="None" val="" valType="str"/>
@@ -450,5 +472,6 @@
     <Routine name="rating_intensity"/>
     <Routine name="rating_difficulty"/>
     <LoopTerminator name="repeats"/>
+    <Routine name="EndText"/>
   </Flow>
 </PsychoPy2experiment>
