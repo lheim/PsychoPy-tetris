@@ -495,18 +495,24 @@ def game(screen, startinglevel, runtime, startTime, thisExp, olf_event):
 
 def startOLF(olf_event, olf, com_channel, runtime):
 
-    print('TETRIS: Starting Thread startOLF\n Channel: %d'%com_channel)
+    print('TETRIS: Starting Thread startOLF. Channel: %d'%com_channel)
 
     olf_event.wait()
+    try:
+        for i in range(0,7):
+            print('TETRIS: THREAD LOOP BEG startOLF. Channel: %d'%com_channel)
 
-    for i in range(0,7):
-        print('TETRIS: THREAD LOOP BEG startOLF. Channel: %d'%com_channel)
-        #TODO: write to exp log that channel is on
-        olf.write(b"\nF%d\r" %com_channel)
-        time.sleep(runtime/4./7.) # if runtime = 56, this equals 2 seconds of sleep -> 2seconds on
-        olf.write(b"\nF%d\r" %com_channel)
-        time.sleep(runtime/4./7.) # 2 seconds off
-        print('TETRIS: THREAD LOOP END startOLF. Channel: %d'%com_channel)
+            #TODO: write to exp log that channel is on
+
+            olf.write(b"\nF%d\r" %com_channel)
+            time.sleep(runtime/4./7.) # if runtime = 56, this equals 2 seconds of sleep -> 2seconds on
+
+            olf.write(b"\nF%d\r" %com_channel)
+            time.sleep(runtime/4./7.) # 2 seconds off
+
+            print('TETRIS: THREAD LOOP END startOLF. Channel: %d'%com_channel)
+    except serial.SerialException:
+        print("TETRIS: Serial Exception. Killing OLF Thread ...")
 
     print('TETRIS: KILLING Thread startOLF. Channel: %d'%com_channel)
 
