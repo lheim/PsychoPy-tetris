@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.90.3),
-    on Mon Oct  1 15:18:20 2018
+    on Mon Oct  1 15:48:30 2018
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -124,7 +124,7 @@ import tetris
 import serial
 
 try:
-    port = serial.Serial('COM4', 19200, timeout=0.5) # when testing WITH OLF
+    port = serial.Serial('COM4', 19200) # when testing WITH OLF
 except serial.SerialException:
     print("Couldnt find COM port. Using port = 'none'")
     port = 'none' # when testing withOUT OLF
@@ -733,7 +733,7 @@ for thisComponent in EndTextComponents:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
 if port != 'none':
-    serial.close()
+    port.close()
 # these shouldn't be strictly necessary (should auto-save)
 thisExp.saveAsWideText(filename+'.csv')
 thisExp.saveAsPickle(filename)
