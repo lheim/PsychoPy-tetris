@@ -329,11 +329,11 @@
     </Routine>
     <Routine name="Tetris">
       <CodeComponent name="code_2">
-        <Param name="Begin Experiment" updates="constant" val="import tetris&amp;#10;#import serial&amp;#10;&amp;#10;try:&amp;#10;    # port = serial.Serial('COM4', 19200) # when testing WITH OLF&amp;#10;    port = 'COM4'&amp;#10;except serial.SerialException:&amp;#10;    print(&quot;Couldnt find COM port. Using port = 'none'&quot;)&amp;#10;    port = 'none' # when testing withOUT OLF" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="import tetris&amp;#10;import serial&amp;#10;&amp;#10;try:&amp;#10;    port = serial.Serial('COM4', 19200) # when testing WITH OLF&amp;#10;except serial.SerialException:&amp;#10;    print(&quot;Couldnt find COM port. Using port = 'none'&quot;)&amp;#10;    port = 'none' # when testing withOUT OLF" valType="extendedCode"/>
         <Param name="name" updates="None" val="code_2" valType="code"/>
         <Param name="Begin Routine" updates="constant" val="# to decrease runtime to speed up testing&amp;#10;runtime = 5 # usualy runtime = 56&amp;#10;&amp;#10;logging.log(level=logging.EXP, msg='Starting Tetris ...')&amp;#10;returnval = tetris.main(difficulty_level-1, runtime, thisExp, port, channel, logging)&amp;#10;logging.log(level=logging.EXP, msg= 'Tetris returned: %d' %returnval)&amp;#10;&amp;#10;# to remove&amp;#10;print('Tetris returned: %d' %returnval)&amp;#10;" valType="extendedCode"/>
         <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
-        <Param name="End Experiment" updates="constant" val="#if port != 'none':&amp;#10;#    serial.close()" valType="extendedCode"/>
+        <Param name="End Experiment" updates="constant" val="if port != 'none':&amp;#10;    serial.close()" valType="extendedCode"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
       </CodeComponent>
       <TextComponent name="text">
