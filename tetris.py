@@ -515,6 +515,7 @@ def startOLF(olf_event, olf, com_channel, runtime):
         print("TETRIS: Serial Exception. Killing OLF Thread ...")
 
     print('TETRIS: KILLING Thread startOLF. Channel: %d'%com_channel)
+    olf.close()
 
 
 
@@ -536,6 +537,8 @@ def main(startingLevel, runtime, thisExp, olf_serial, com_channel, logging):
 
     olf_event = Event()
     if olf != 'none':
+        olf = serial.Serial(olf_serial, 19200) # when testing WITH OLF
+
         olf_thread = Thread(target=startOLF, args=[olf_event, olf, com_channel, runtime])
         olf_thread.start()
     else:
