@@ -498,16 +498,17 @@ def startOLF(olf_event, olf, com_channel, runtime):
     print('TETRIS: Starting Thread startOLF\n Channel: %d'%com_channel)
 
     olf_event.wait()
+
     for i in range(0,7):
-        print('TETRIS: THREAD LOOP BEG startOLF\n Channel: %d'%com_channel)
+        print('TETRIS: THREAD LOOP BEG startOLF. Channel: %d'%com_channel)
         #TODO: write to exp log that channel is on
         olf.write(b"\nF%d\r" %com_channel)
         time.sleep(runtime/4./7.) # if runtime = 56, this equals 2 seconds of sleep -> 2seconds on
         olf.write(b"\nF%d\r" %com_channel)
         time.sleep(runtime/4./7.) # 2 seconds off
-        print('TETRIS: THREAD LOOP END startOLF\n Channel: %d'%com_channel)
+        print('TETRIS: THREAD LOOP END startOLF. Channel: %d'%com_channel)
 
-    print('TETRIS: KILLING Thread startOLF\n Channel: %d'%com_channel)
+    print('TETRIS: KILLING Thread startOLF. Channel: %d'%com_channel)
 
 
 
@@ -558,7 +559,9 @@ def main(startingLevel, runtime, thisExp, olf_serial, com_channel, logging):
             thisExp.nextEntry()
             print("TETRIS: pressed Q - killing")
             if olf != 'none':
+                print("TETRIS: waiting for thread to join")
                 olf_thread.join()
+                print("TETRIS: thread joined")
             OLF_STATUS = 'UNINITIALIZED'
             pygame.quit()
             return x
@@ -572,9 +575,15 @@ def main(startingLevel, runtime, thisExp, olf_serial, com_channel, logging):
             thisExp.addData('tetris.quit', 'time elapsed')
             thisExp.nextEntry()
             if olf != 'none':
+                print("TETRIS: waiting for thread to join")
                 olf_thread.join()
+                print("TETRIS: thread joined")
+
             OLF_STATUS = 'UNINITIALIZED'
             pygame.quit()
+            return x
+        else:
+            print("TETRIS: unknown return value of game(): %d" %x)
             return x
 
 
