@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.90.3),
-    on Mon Oct  1 12:29:01 2018
+    on Mon Oct  1 13:34:49 2018
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -26,7 +26,7 @@ _thisDir = os.path.dirname(os.path.abspath(__file__)).decode(sys.getfilesystemen
 os.chdir(_thisDir)
 
 # Store info about the experiment session
-expName = u'Tetris-Workload'  # from the Builder filename that created this script
+expName = 'Tetris-Workload'  # from the Builder filename that created this script
 expInfo = {u'session': u'001', u'participant': u''}
 dlg = gui.DlgFromDict(dictionary=expInfo, title=expName)
 if dlg.OK == False:
@@ -55,7 +55,7 @@ endExpNow = False  # flag for 'escape' or other condition => quit the exp
 win = visual.Window(
     size=[1422, 800], fullscr=False, screen=0,
     allowGUI=True, allowStencil=False,
-    monitor=u'testMonitor', color=[0,0,0], colorSpace='rgb',
+    monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
     blendMode='avg', useFBO=True)
 # store frame rate of monitor if we can measure it
 expInfo['frameRate'] = win.getActualFrameRate()
@@ -121,9 +121,10 @@ spacer_text = visual.TextStim(win=win, name='spacer_text',
 # Initialize components for Routine "Tetris"
 TetrisClock = core.Clock()
 import tetris
+import serial
 
 port = 'none' # when testing withOUT OLF
-# port = 'COM3' # when testing WITH OLF
+# port = serial.Serial('COM4', 19200, timeout=0.5) # when testing WITH OLF
 
 text = visual.TextStim(win=win, name='text',
     text='Tetris finished\nit returned',
@@ -729,7 +730,8 @@ while continueRoutine and routineTimer.getTime() > 0:
 for thisComponent in EndTextComponents:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
-
+if port != 'none':
+    serial.close()
 # these shouldn't be strictly necessary (should auto-save)
 thisExp.saveAsWideText(filename+'.csv')
 thisExp.saveAsPickle(filename)

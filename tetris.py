@@ -376,7 +376,7 @@ def game(screen, startinglevel, runtime, startTime, thisExp, olf_event):
         elapsed_time = time.time() - startTime
 
         if elapsed_time > runtime/2 and OLF_STATUS != 'ON':
-            print("TETRIS: Turning on OLF_EVENT. Thread will start.")
+            print("TETRIS: Setting OLF_EVENT. Thread will continue if enabled.")
             OLF_STATUS = 'ON'
             thisExp.addData('tetris.olf_on-time', elapsed_time)
             olf_event.set()
