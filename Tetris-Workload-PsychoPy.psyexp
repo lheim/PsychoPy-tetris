@@ -7,7 +7,7 @@
     <Param name="Experiment info" updates="None" val="{u'session': u'001', u'participant': u''}" valType="code"/>
     <Param name="JS libs" updates="None" val="packaged" valType="str"/>
     <Param name="Units" updates="None" val="use prefs" valType="str"/>
-    <Param name="Save excel file" updates="None" val="False" valType="bool"/>
+    <Param name="Save excel file" updates="None" val="True" valType="bool"/>
     <Param name="Enable Escape" updates="None" val="True" valType="bool"/>
     <Param name="Save psydat file" updates="None" val="True" valType="bool"/>
     <Param name="Window size (pixels)" updates="None" val="[1422, 800]" valType="code"/>
@@ -22,7 +22,7 @@
     <Param name="Show mouse" updates="None" val="False" valType="bool"/>
     <Param name="Data filename" updates="None" val="u'data/%s_%s_%s' % (expInfo['participant'], expName, expInfo['date'])" valType="code"/>
     <Param name="Show info dlg" updates="None" val="True" valType="bool"/>
-    <Param name="expName" updates="None" val="WorkloadV1.0" valType="str"/>
+    <Param name="expName" updates="None" val="Tetris-Workload" valType="str"/>
     <Param name="logging level" updates="None" val="exp" valType="code"/>
     <Param name="Screen" updates="None" val="1" valType="num"/>
   </Settings>
@@ -329,9 +329,9 @@
     </Routine>
     <Routine name="Tetris">
       <CodeComponent name="code_2">
-        <Param name="Begin Experiment" updates="constant" val="import tetris&amp;#10;serial = 'none'&amp;#10;port = 'none'&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin Experiment" updates="constant" val="import tetris&amp;#10;&amp;#10;port = 'none' # when testing withOUT OLF&amp;#10;# port = 'COM3' # when testing WITH OLF&amp;#10;" valType="extendedCode"/>
         <Param name="name" updates="None" val="code_2" valType="code"/>
-        <Param name="Begin Routine" updates="constant" val="runtime = 5 # usualy runtime = 56&amp;#10;returnval = tetris.main(difficulty_level-1, runtime, thisExp, port, channel)&amp;#10;&amp;#10;&amp;#10;print('Tetris returned: %d' %returnval)&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="# to decrease runtime to speed up testing&amp;#10;runtime = 5 # usualy runtime = 56&amp;#10;&amp;#10;logging.log(level=logging.EXP, msg='Starting Tetris ...')&amp;#10;returnval = tetris.main(difficulty_level-1, runtime, thisExp, port, channel)&amp;#10;logging.log(level=logging.EXP, msg= 'Tetris returned: %d' %returnval)&amp;#10;&amp;#10;# to remove&amp;#10;print('Tetris returned: %d' %returnval)&amp;#10;" valType="extendedCode"/>
         <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>

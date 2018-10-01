@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-This experiment was created using PsychoPy2 Experiment Builder (v1.90.2),
-    on Thu Sep 13 12:07:32 2018
+This experiment was created using PsychoPy2 Experiment Builder (v1.90.3),
+    on Mon Oct  1 11:56:23 2018
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -26,7 +26,7 @@ _thisDir = os.path.dirname(os.path.abspath(__file__)).decode(sys.getfilesystemen
 os.chdir(_thisDir)
 
 # Store info about the experiment session
-expName = 'WorkloadV1.0'  # from the Builder filename that created this script
+expName = u'WorkloadV1.0'  # from the Builder filename that created this script
 expInfo = {u'session': u'001', u'participant': u''}
 dlg = gui.DlgFromDict(dictionary=expInfo, title=expName)
 if dlg.OK == False:
@@ -40,7 +40,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath=u'/Users/nope/ownCloud/work/uka/code/psychoPy/psychoPy-tetris/Workload_home-steph-13sept18.psyexp',
+    originPath=u'/Users/nope/ownCloud/work/uka/code/psychoPy/psychoPy-tetris/Tetris-Workload-PsychoPy.psyexp',
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -55,7 +55,7 @@ endExpNow = False  # flag for 'escape' or other condition => quit the exp
 win = visual.Window(
     size=[1422, 800], fullscr=False, screen=0,
     allowGUI=True, allowStencil=False,
-    monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
+    monitor=u'testMonitor', color=[0,0,0], colorSpace='rgb',
     blendMode='avg', useFBO=True)
 # store frame rate of monitor if we can measure it
 expInfo['frameRate'] = win.getActualFrameRate()
@@ -121,7 +121,10 @@ spacer_text = visual.TextStim(win=win, name='spacer_text',
 # Initialize components for Routine "Tetris"
 TetrisClock = core.Clock()
 import tetris
-serial = 'none'
+
+port = 'none' # when testing withOUT OLF
+# port = 'COM3' # when testing WITH OLF
+
 text = visual.TextStim(win=win, name='text',
     text='Tetris finished\nit returned',
     font='Arial',
@@ -142,6 +145,15 @@ intensity = visual.RatingScale(win=win, name='intensity', marker='triangle', siz
 # Initialize components for Routine "rating_difficulty"
 rating_difficultyClock = core.Clock()
 difficulty = visual.RatingScale(win=win, name='difficulty', marker='triangle', size=1.0, pos=[0.0, -0.4], low=1, high=10, labels=[''], scale=u'Bitte bewerten sie nun die Schwierigkeit der Runde, die sie gerade gespielt haben. 1 steht f\xfcr eine sehr einfache, 10 f\xfcr eine sehr schwere Runde.', markerStart='5')
+
+# Initialize components for Routine "EndText"
+EndTextClock = core.Clock()
+EndText1 = visual.TextStim(win=win, name='EndText1',
+    text='Byee...',
+    font='Arial',
+    pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
+    color='white', colorSpace='rgb', opacity=1,
+    depth=0.0);
 
 # Create some handy timers
 globalClock = core.Clock()  # to track the time since experiment started
@@ -452,11 +464,14 @@ for thisRepeat in repeats:
     frameN = -1
     continueRoutine = True
     # update component parameters for each repeat
+    # to decrease runtime to speed up testing
     runtime = 5 # usualy runtime = 56
-    port = 'none'
+    
+    logging.log(level=logging.EXP, msg='Starting Tetris ...')
     returnval = tetris.main(difficulty_level-1, runtime, thisExp, port, channel)
+    logging.log(level=logging.EXP, msg= 'Tetris returned: %d' %returnval)
     
-    
+    # to remove
     print('Tetris returned: %d' %returnval)
     
     key_resp_5 = event.BuilderKeyResponse()
@@ -653,6 +668,67 @@ for thisRepeat in repeats:
     
 # completed 1 repeats of 'repeats'
 
+# get names of stimulus parameters
+if repeats.trialList in ([], [None], None):
+    params = []
+else:
+    params = repeats.trialList[0].keys()
+# save data for this loop
+repeats.saveAsExcel(filename + '.xlsx', sheetName='repeats',
+    stimOut=params,
+    dataOut=['n','all_mean','all_std', 'all_raw'])
+
+# ------Prepare to start Routine "EndText"-------
+t = 0
+EndTextClock.reset()  # clock
+frameN = -1
+continueRoutine = True
+routineTimer.add(5.000000)
+# update component parameters for each repeat
+# keep track of which components have finished
+EndTextComponents = [EndText1]
+for thisComponent in EndTextComponents:
+    if hasattr(thisComponent, 'status'):
+        thisComponent.status = NOT_STARTED
+
+# -------Start Routine "EndText"-------
+while continueRoutine and routineTimer.getTime() > 0:
+    # get current time
+    t = EndTextClock.getTime()
+    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+    # update/draw components on each frame
+    
+    # *EndText1* updates
+    if t >= 0.0 and EndText1.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        EndText1.tStart = t
+        EndText1.frameNStart = frameN  # exact frame index
+        EndText1.setAutoDraw(True)
+    frameRemains = 0.0 + 5.0- win.monitorFramePeriod * 0.75  # most of one frame period left
+    if EndText1.status == STARTED and t >= frameRemains:
+        EndText1.setAutoDraw(False)
+    
+    # check if all components have finished
+    if not continueRoutine:  # a component has requested a forced-end of Routine
+        break
+    continueRoutine = False  # will revert to True if at least one component still running
+    for thisComponent in EndTextComponents:
+        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+            continueRoutine = True
+            break  # at least one component has not yet finished
+    
+    # check for quit (the Esc key)
+    if endExpNow or event.getKeys(keyList=["escape"]):
+        core.quit()
+    
+    # refresh the screen
+    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+        win.flip()
+
+# -------Ending Routine "EndText"-------
+for thisComponent in EndTextComponents:
+    if hasattr(thisComponent, "setAutoDraw"):
+        thisComponent.setAutoDraw(False)
 
 # these shouldn't be strictly necessary (should auto-save)
 thisExp.saveAsWideText(filename+'.csv')
