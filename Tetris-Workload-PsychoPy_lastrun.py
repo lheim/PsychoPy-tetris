@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.90.3),
-    on Mon Oct  1 13:34:49 2018
+    on Mon Oct  1 15:18:20 2018
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -123,9 +123,11 @@ TetrisClock = core.Clock()
 import tetris
 import serial
 
-port = 'none' # when testing withOUT OLF
-# port = serial.Serial('COM4', 19200, timeout=0.5) # when testing WITH OLF
-
+try:
+    port = serial.Serial('COM4', 19200, timeout=0.5) # when testing WITH OLF
+except serial.SerialException:
+    print("Couldnt find COM port. Using port = 'none'")
+    port = 'none' # when testing withOUT OLF
 text = visual.TextStim(win=win, name='text',
     text='Tetris finished\nit returned',
     font='Arial',
