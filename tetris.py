@@ -511,7 +511,7 @@ def startOLF(olf_event, olf, com_channel, runtime):
             time.sleep(runtime/4./7.) # 2 seconds off
 
             print('TETRIS: THREAD LOOP END startOLF. Channel: %d'%com_channel)
-    except serial.SerialException:
+    except:
         print("TETRIS: Serial Exception. Killing OLF Thread ...")
 
     print('TETRIS: KILLING Thread startOLF. Channel: %d'%com_channel)
