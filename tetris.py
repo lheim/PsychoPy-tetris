@@ -376,7 +376,7 @@ def game(screen, startinglevel, runtime, startTime, thisExp, olf_event):
         elapsed_time = time.time() - startTime
 
         if elapsed_time > runtime/2 and OLF_STATUS != 'ON':
-            print("TURNING OLF EVENT ON! SETTING EVENT")
+            print("TETRIS: Turning on OLF_EVENT. Thread will start.")
             OLF_STATUS = 'ON'
             thisExp.addData('tetris.olf_on-time', elapsed_time)
             olf_event.set()
@@ -438,7 +438,7 @@ def game(screen, startinglevel, runtime, startTime, thisExp, olf_event):
                     newpiece=True
                     break
             except:
-                print "Unexpected Error"
+                print "TETRIS: Unexpected Error"
         if newpiece:
             pieces += 1
             # if a new piece is spawned, then we write the current piece
@@ -495,24 +495,24 @@ def game(screen, startinglevel, runtime, startTime, thisExp, olf_event):
 
 def startOLF(olf_event, olf, com_channel, runtime):
 
-    print('Starting Thread startOLF\n Channel: %d'%com_channel)
+    print('TETRIS: Starting Thread startOLF\n Channel: %d'%com_channel)
 
     olf_event.wait()
     for i in range(0,7):
-        print('THREAD LOOP BEG startOLF\n Channel: %d'%com_channel)
+        print('TETRIS: THREAD LOOP BEG startOLF\n Channel: %d'%com_channel)
         #TODO: write to exp log that channel is on
         olf.write(b"\nF%d\r" %com_channel)
-        time.sleep(runtime/4/7)
+        time.sleep(runtime/4./7.) # if runtime = 56, this equals 2 seconds of sleep -> 2seconds on
         olf.write(b"\nF%d\r" %com_channel)
-        time.sleep(runtime/4/7)
-        print('THREAD LOOP END startOLF\n Channel: %d'%com_channel)
+        time.sleep(runtime/4./7.) # 2 seconds off
+        print('TETRIS: THREAD LOOP END startOLF\n Channel: %d'%com_channel)
 
-    print('KILLING Thread startOLF\n Channel: %d'%com_channel)
-
-
+    print('TETRIS: KILLING Thread startOLF\n Channel: %d'%com_channel)
 
 
-def main(startingLevel, runtime, thisExp, olf_serial, com_channel):
+
+
+def main(startingLevel, runtime, thisExp, olf_serial, com_channel, logging):
     makeblockimages()
     pygame.init()
     size = (341,700)
@@ -531,15 +531,18 @@ def main(startingLevel, runtime, thisExp, olf_serial, com_channel):
     if olf != 'none':
         olf_thread = Thread(target=startOLF, args=[olf_event, olf, com_channel, runtime])
         olf_thread.start()
-
+    else:
+        print("TETRIS: OLF port is set to 'none' - not starting OLF thread")
     global OLF_STATUS
 
 
 
     while True:
 
-        # run for at least 50
+        # restarts here when game is lost
         trial += 1
+
+        logging.log(level=logging.DATA, msg= 'TETRIS: Trial %d' %trial)
 
 
         thisExp.addData('tetris.level', startingLevel)
@@ -553,19 +556,19 @@ def main(startingLevel, runtime, thisExp, olf_serial, com_channel):
         if x == -1: # pressed escape
             thisExp.addData('tetris.quit', 'pressed q')
             thisExp.nextEntry()
-            print("ESC: killing")
+            print("TETRIS: pressed Q - killing")
             if olf != 'none':
                 olf_thread.join()
             OLF_STATUS = 'UNINITIALIZED'
             pygame.quit()
             return x
         elif x == 1: # gameover, repeat if time not elapsed
-            print("Gameover")
+            print("TETRIS: Gameover")
             thisExp.addData('tetris.quit', 'gameover')
             thisExp.nextEntry()
             continue
         elif x == -5:
-            print("Time elapsed") # time elapsed, quit
+            print("TETRIS: Time elapsed") # time elapsed, quit
             thisExp.addData('tetris.quit', 'time elapsed')
             thisExp.nextEntry()
             if olf != 'none':

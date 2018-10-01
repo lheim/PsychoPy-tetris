@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.90.3),
-    on Mon Oct  1 11:56:23 2018
+    on Mon Oct  1 12:29:01 2018
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -26,7 +26,7 @@ _thisDir = os.path.dirname(os.path.abspath(__file__)).decode(sys.getfilesystemen
 os.chdir(_thisDir)
 
 # Store info about the experiment session
-expName = u'WorkloadV1.0'  # from the Builder filename that created this script
+expName = u'Tetris-Workload'  # from the Builder filename that created this script
 expInfo = {u'session': u'001', u'participant': u''}
 dlg = gui.DlgFromDict(dictionary=expInfo, title=expName)
 if dlg.OK == False:
@@ -468,7 +468,7 @@ for thisRepeat in repeats:
     runtime = 5 # usualy runtime = 56
     
     logging.log(level=logging.EXP, msg='Starting Tetris ...')
-    returnval = tetris.main(difficulty_level-1, runtime, thisExp, port, channel)
+    returnval = tetris.main(difficulty_level-1, runtime, thisExp, port, channel, logging)
     logging.log(level=logging.EXP, msg= 'Tetris returned: %d' %returnval)
     
     # to remove
