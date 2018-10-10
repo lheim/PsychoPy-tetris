@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<PsychoPy2experiment encoding="utf-8" version="1.90.3">
+<PsychoPy2experiment encoding="utf-8" version="1.90.2">
   <Settings>
     <Param name="Monitor" updates="None" val="testMonitor" valType="str"/>
     <Param name="color" updates="None" val="$[0,0,0]" valType="str"/>
@@ -28,13 +28,13 @@
   </Settings>
   <Routines>
     <Routine name="IntroText3">
-      <TextComponent name="Intro3_text">
+      <TextComponent name="intro3_text">
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
-        <Param name="name" updates="None" val="Intro3_text" valType="code"/>
+        <Param name="name" updates="None" val="intro3_text" valType="code"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
         <Param name="color" updates="constant" val="black" valType="str"/>
-        <Param name="text" updates="constant" val="Nach jedem Duftstoff stoppt das Spiel und sie werden gebeten den Duftstoff auf einer Skala von 1-10 hinsichtlich seiner Intensität zu bewerten." valType="str"/>
+        <Param name="text" updates="constant" val="Das Spiel steuern Sie mit den Pfeiltasten sowie der Leertaste.&amp;#10;&amp;#10;Linke &amp; rechte Pfeiltaste = Bewegen des Spielsteins nach links bzw. rechts&amp;#10;Obere Pfeiltaste = Drehen des Spielsteins&amp;#10;Untere Pfeiltaste = Schnelleres Fallenlassen des Spielsteins&amp;#10;Leertaste = Spielstein fällt sofort auf die tiefste Position&amp;#10;" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
@@ -46,15 +46,15 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
-        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+        <Param name="letterHeight" updates="constant" val="0.08" valType="code"/>
       </TextComponent>
-      <TextComponent name="Intro3_text2">
+      <TextComponent name="intro3_text_2">
         <Param name="opacity" updates="constant" val="1" valType="code"/>
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
-        <Param name="name" updates="None" val="Intro3_text2" valType="code"/>
+        <Param name="name" updates="None" val="intro3_text_2" valType="code"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
         <Param name="color" updates="constant" val="black" valType="str"/>
-        <Param name="text" updates="constant" val="Start des Experiments durch drücken der Leertaste." valType="str"/>
+        <Param name="text" updates="constant" val="Weiter durch drücken der Leertaste" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="pos" updates="constant" val="(0, -0.5)" valType="code"/>
@@ -64,14 +64,14 @@
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="3.0" valType="code"/>
+        <Param name="startVal" updates="None" val="3" valType="code"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
-        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+        <Param name="letterHeight" updates="constant" val="0.08" valType="code"/>
       </TextComponent>
-      <KeyboardComponent name="key_resp_4">
+      <KeyboardComponent name="key_resp_7">
         <Param name="correctAns" updates="constant" val="" valType="str"/>
         <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
-        <Param name="name" updates="None" val="key_resp_4" valType="code"/>
+        <Param name="name" updates="None" val="key_resp_7" valType="code"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
@@ -92,7 +92,7 @@
         <Param name="name" updates="None" val="Intro2_text" valType="code"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
         <Param name="color" updates="constant" val="black" valType="str"/>
-        <Param name="text" updates="constant" val="Der Geruch wird Ihnen während des Spielens in Blöcken präsentiert. Atmen sie ruhig und normal." valType="str"/>
+        <Param name="text" updates="constant" val="Der Geruch wird Ihnen während des Spielens in Blöcken präsentiert. Atmen Sie ruhig und normal." valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
@@ -104,7 +104,7 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
-        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+        <Param name="letterHeight" updates="constant" val="0.08" valType="code"/>
       </TextComponent>
       <TextComponent name="intro2_text2">
         <Param name="opacity" updates="constant" val="1" valType="code"/>
@@ -124,7 +124,7 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="startVal" updates="None" val="3.0" valType="code"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
-        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+        <Param name="letterHeight" updates="constant" val="0.08" valType="code"/>
       </TextComponent>
       <KeyboardComponent name="key_resp_3">
         <Param name="correctAns" updates="constant" val="" valType="str"/>
@@ -153,7 +153,7 @@
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
         <Param name="markerStart" updates="constant" val="5" valType="str"/>
         <Param name="disappear" updates="constant" val="False" valType="bool"/>
-        <Param name="size" updates="constant" val="1.0" valType="code"/>
+        <Param name="size" updates="constant" val="2.0" valType="code"/>
         <Param name="tickHeight" updates="constant" val="" valType="str"/>
         <Param name="showAccept" updates="constant" val="True" valType="bool"/>
         <Param name="storeRatingTime" updates="constant" val="True" valType="bool"/>
@@ -165,13 +165,91 @@
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="stopType" updates="None" val="condition" valType="str"/>
-        <Param name="scaleDescription" updates="constant" val="Bitte bewerten sie nun die Intensität des vorangegangenen Duftstoffs. Dabei steht 1 für eine niedrige Intensität und 10 für eine hohe Intensität." valType="str"/>
+        <Param name="scaleDescription" updates="constant" val="" valType="str"/>
         <Param name="storeHistory" updates="constant" val="False" valType="bool"/>
         <Param name="categoryChoices" updates="constant" val="" valType="str"/>
         <Param name="customize_everything" updates="constant" val="" valType="str"/>
         <Param name="name" updates="None" val="intensity" valType="code"/>
         <Param name="singleClick" updates="constant" val="False" valType="bool"/>
       </RatingScaleComponent>
+      <TextComponent name="text_ratingintensity">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="text_ratingintensity" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="black" valType="str"/>
+        <Param name="text" updates="constant" val="Wie intensiv haben Sie diesen Geruch empfunden?" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0.1)" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.08" valType="code"/>
+      </TextComponent>
+    </Routine>
+    <Routine name="IntroText4">
+      <TextComponent name="Intro4_text">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="Intro4_text" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="black" valType="str"/>
+        <Param name="text" updates="constant" val="Bei jedem Geruch stoppt das Spiel nach circa einer Minute und die Applikation des Geruchs wird beendet. &amp;#10;Es erscheint dann eine Bewertungsskala für die Intensität des vorangegangenen Geruchs und anschließend eine für den Schwierigkeitsgrad des Spiels.&amp;#10;Die 10 steht dabei für einen sehr intensiven Geruch bzw. einen sehr hohen Schwierigkeitsgrad und die 1 für einen sehr schwachen Geruch bzw. einen sehr niedrigen Schwierigkeitsgrad.&amp;#10;&amp;#10;Bitte verschieben Sie den Marker durch die linke und rechte Pfeiltaste an die gewünschte Position und bestätigen Sie Ihre Eingabe mit der Eingabetaste." valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0.2)" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.08" valType="code"/>
+      </TextComponent>
+      <TextComponent name="Intro4_text2">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="Intro4_text2" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="black" valType="str"/>
+        <Param name="text" updates="constant" val="Wenn Sie keine Fragen mehr haben, können Sie das Experiment durch drücken der Leertaste starten." valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, -0.8)" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="3.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.08" valType="code"/>
+      </TextComponent>
+      <KeyboardComponent name="key_resp_4">
+        <Param name="correctAns" updates="constant" val="" valType="str"/>
+        <Param name="storeCorrect" updates="constant" val="False" valType="bool"/>
+        <Param name="name" updates="None" val="key_resp_4" valType="code"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="forceEndRoutine" updates="constant" val="True" valType="bool"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="discard previous" updates="constant" val="True" valType="bool"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="allowedKeys" updates="constant" val="'space'" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="store" updates="constant" val="nothing" valType="str"/>
+        <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
+      </KeyboardComponent>
     </Routine>
     <Routine name="stimulus">
       <TextComponent name="stimulus_plus">
@@ -259,9 +337,9 @@
         <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
         <Param name="name" updates="None" val="EndText1" valType="code"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
-        <Param name="color" updates="constant" val="white" valType="str"/>
-        <Param name="text" updates="constant" val="Byee..." valType="str"/>
-        <Param name="stopVal" updates="constant" val="5.0" valType="code"/>
+        <Param name="color" updates="constant" val="black" valType="str"/>
+        <Param name="text" updates="constant" val="Vielen Dank für Ihre Teilnahme." valType="str"/>
+        <Param name="stopVal" updates="constant" val="5" valType="code"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
         <Param name="flip" updates="constant" val="" valType="str"/>
@@ -270,9 +348,9 @@
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="ori" updates="constant" val="0" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="startVal" updates="None" val="0" valType="code"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
-        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+        <Param name="letterHeight" updates="constant" val="0.08" valType="code"/>
       </TextComponent>
     </Routine>
     <Routine name="rating_difficulty">
@@ -285,7 +363,7 @@
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
         <Param name="markerStart" updates="constant" val="5" valType="str"/>
         <Param name="disappear" updates="constant" val="False" valType="bool"/>
-        <Param name="size" updates="constant" val="1.0" valType="code"/>
+        <Param name="size" updates="constant" val="2.0" valType="code"/>
         <Param name="tickHeight" updates="constant" val="" valType="str"/>
         <Param name="showAccept" updates="constant" val="True" valType="bool"/>
         <Param name="storeRatingTime" updates="constant" val="True" valType="bool"/>
@@ -297,13 +375,33 @@
         <Param name="startEstim" updates="None" val="" valType="code"/>
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="stopType" updates="None" val="condition" valType="str"/>
-        <Param name="scaleDescription" updates="constant" val="Bitte bewerten sie nun die Schwierigkeit der Runde, die sie gerade gespielt haben. 1 steht für eine sehr einfache, 10 für eine sehr schwere Runde." valType="str"/>
+        <Param name="scaleDescription" updates="constant" val="" valType="str"/>
         <Param name="storeHistory" updates="constant" val="False" valType="bool"/>
         <Param name="categoryChoices" updates="constant" val="" valType="str"/>
         <Param name="customize_everything" updates="constant" val="" valType="str"/>
         <Param name="name" updates="None" val="difficulty" valType="code"/>
         <Param name="singleClick" updates="constant" val="False" valType="bool"/>
       </RatingScaleComponent>
+      <TextComponent name="text_ratingdifficulty">
+        <Param name="opacity" updates="constant" val="1" valType="code"/>
+        <Param name="colorSpace" updates="constant" val="rgb" valType="str"/>
+        <Param name="name" updates="None" val="text_ratingdifficulty" valType="code"/>
+        <Param name="wrapWidth" updates="constant" val="" valType="code"/>
+        <Param name="color" updates="constant" val="white" valType="str"/>
+        <Param name="text" updates="constant" val="Wie schwer fanden Sie diese Runde Tetris?" valType="str"/>
+        <Param name="stopVal" updates="constant" val="" valType="code"/>
+        <Param name="durationEstim" updates="None" val="" valType="code"/>
+        <Param name="pos" updates="constant" val="(0, 0.1)" valType="code"/>
+        <Param name="flip" updates="constant" val="" valType="str"/>
+        <Param name="startEstim" updates="None" val="" valType="code"/>
+        <Param name="units" updates="None" val="from exp settings" valType="str"/>
+        <Param name="startType" updates="None" val="time (s)" valType="str"/>
+        <Param name="ori" updates="constant" val="0" valType="code"/>
+        <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
+        <Param name="startVal" updates="None" val="0.0" valType="code"/>
+        <Param name="font" updates="constant" val="Arial" valType="str"/>
+        <Param name="letterHeight" updates="constant" val="0.08" valType="code"/>
+      </TextComponent>
     </Routine>
     <Routine name="Spacer">
       <TextComponent name="spacer_text">
@@ -331,7 +429,7 @@
       <CodeComponent name="code_2">
         <Param name="Begin Experiment" updates="constant" val="import tetris&amp;#10;import serial&amp;#10;&amp;#10;try:&amp;#10;    port = serial.Serial('COM4', 19200) # when testing WITH OLF&amp;#10;except serial.SerialException:&amp;#10;    print(&quot;Couldnt find COM port. Using port = 'none'&quot;)&amp;#10;    port = 'none' # when testing withOUT OLF" valType="extendedCode"/>
         <Param name="name" updates="None" val="code_2" valType="code"/>
-        <Param name="Begin Routine" updates="constant" val="# to decrease runtime to speed up testing&amp;#10;runtime = 5 # usualy runtime = 56&amp;#10;&amp;#10;logging.log(level=logging.EXP, msg='Starting Tetris ...')&amp;#10;returnval = tetris.main(difficulty_level-1, runtime, thisExp, port, channel, logging)&amp;#10;logging.log(level=logging.EXP, msg= 'Tetris returned: %d' %returnval)&amp;#10;&amp;#10;# to remove&amp;#10;print('Tetris returned: %d' %returnval)&amp;#10;" valType="extendedCode"/>
+        <Param name="Begin Routine" updates="constant" val="# to decrease runtime to speed up testing&amp;#10;runtime = 56 # usualy runtime = 56&amp;#10;&amp;#10;logging.log(level=logging.EXP, msg='Starting Tetris ...')&amp;#10;returnval = tetris.main(difficulty_level-1, runtime, thisExp, port, channel, logging)&amp;#10;logging.log(level=logging.EXP, msg= 'Tetris returned: %d' %returnval)&amp;#10;&amp;#10;# to remove&amp;#10;print('Tetris returned: %d' %returnval)&amp;#10;" valType="extendedCode"/>
         <Param name="End Routine" updates="constant" val="" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="if port != 'none':&amp;#10;    port.close()" valType="extendedCode"/>
         <Param name="Each Frame" updates="constant" val="" valType="extendedCode"/>
@@ -400,7 +498,7 @@
         <Param name="name" updates="None" val="Intro1_text1" valType="code"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
         <Param name="color" updates="constant" val="black" valType="str"/>
-        <Param name="text" updates="constant" val="In diesem Experiment lassen wir sie Tetris spielen und werden Ihnen dabei die Gerüche Banane, Orange, Ledern Holz sowie einen Leerduft präsentieren.&amp;#10;&amp;#10;Ihre Aufgabe ist es, nach Ablauf der Spielzeit die Intensität des Geruchs zu bewerten." valType="str"/>
+        <Param name="text" updates="constant" val="In diesem Experiment lassen wir Sie Tetris spielen und werden Ihnen dabei die Gerüche Banane, Orange, Leder, Holz sowie einen Leerduft präsentieren.&amp;#10;&amp;#10;Ihre Aufgabe ist es, nach Ablauf der Spielzeit die Intensität des Geruchs sowie den Schwierigkeitsgrad des Spiels zu bewerten.&amp;#10;Es ist dabei möglich, dass Sie keinen Geruch riechen." valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="pos" updates="constant" val="(0, 0)" valType="code"/>
@@ -412,7 +510,7 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="startVal" updates="None" val="0.0" valType="code"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
-        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+        <Param name="letterHeight" updates="constant" val="0.08" valType="code"/>
       </TextComponent>
       <TextComponent name="Intro1_text2">
         <Param name="opacity" updates="constant" val="1" valType="code"/>
@@ -432,7 +530,7 @@
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
         <Param name="startVal" updates="None" val="3.0" valType="code"/>
         <Param name="font" updates="constant" val="Arial" valType="str"/>
-        <Param name="letterHeight" updates="constant" val="0.1" valType="code"/>
+        <Param name="letterHeight" updates="constant" val="0.08" valType="code"/>
       </TextComponent>
       <KeyboardComponent name="key_resp_2">
         <Param name="correctAns" updates="constant" val="" valType="str"/>
@@ -456,13 +554,14 @@
     <Routine name="IntroText"/>
     <Routine name="IntroText2"/>
     <Routine name="IntroText3"/>
+    <Routine name="IntroText4"/>
     <LoopInitiator loopType="TrialHandler" name="repeats">
       <Param name="conditionsFile" updates="None" val="workload_data.xlsx" valType="str"/>
       <Param name="name" updates="None" val="repeats" valType="code"/>
       <Param name="isTrials" updates="None" val="True" valType="bool"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
-      <Param name="nReps" updates="None" val="1" valType="code"/>
+      <Param name="nReps" updates="None" val="4" valType="code"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
       <Param name="conditions" updates="None" val="[OrderedDict([('odor', u'Leder'), ('difficulty_level', 5), ('number_in_olf', 1)]), OrderedDict([('odor', u'Holz'), ('difficulty_level', 5), ('number_in_olf', 2)]), OrderedDict([('odor', u'Banane'), ('difficulty_level', 5), ('number_in_olf', 3)]), OrderedDict([('odor', u'Orange'), ('difficulty_level', 5), ('number_in_olf', 4)]), OrderedDict([('odor', u'Wasser'), ('difficulty_level', 5), ('number_in_olf', 7)]), OrderedDict([('odor', u'Leder'), ('difficulty_level', 25), ('number_in_olf', 1)]), OrderedDict([('odor', u'Holz'), ('difficulty_level', 25), ('number_in_olf', 2)]), OrderedDict([('odor', u'Banane'), ('difficulty_level', 25), ('number_in_olf', 3)]), OrderedDict([('odor', u'Orange'), ('difficulty_level', 25), ('number_in_olf', 4)]), OrderedDict([('odor', u'Wasser'), ('difficulty_level', 25), ('number_in_olf', 7)])]" valType="str"/>
       <Param name="Selected rows" updates="None" val="" valType="str"/>
