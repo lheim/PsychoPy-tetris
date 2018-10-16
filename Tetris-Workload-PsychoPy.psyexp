@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<PsychoPy2experiment encoding="utf-8" version="1.90.2">
+<PsychoPy2experiment encoding="utf-8" version="1.90.3">
   <Settings>
     <Param name="Monitor" updates="None" val="testMonitor" valType="str"/>
     <Param name="color" updates="None" val="$[0,0,0]" valType="str"/>
@@ -555,22 +555,22 @@
     <Routine name="IntroText2"/>
     <Routine name="IntroText3"/>
     <Routine name="IntroText4"/>
-    <LoopInitiator loopType="TrialHandler" name="repeats">
-      <Param name="conditionsFile" updates="None" val="workload_data.xlsx" valType="str"/>
-      <Param name="name" updates="None" val="repeats" valType="code"/>
-      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+    <LoopInitiator loopType="TrialHandler" name="trials">
+      <Param name="conditionsFile" updates="None" val="trials-data.xlsx" valType="str"/>
+      <Param name="name" updates="None" val="trials" valType="code"/>
+      <Param name="isTrials" updates="None" val="False" valType="bool"/>
       <Param name="random seed" updates="None" val="" valType="code"/>
       <Param name="loopType" updates="None" val="random" valType="str"/>
       <Param name="nReps" updates="None" val="4" valType="code"/>
       <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
-      <Param name="conditions" updates="None" val="[OrderedDict([('odor', u'Leder'), ('difficulty_level', 5), ('number_in_olf', 1)]), OrderedDict([('odor', u'Holz'), ('difficulty_level', 5), ('number_in_olf', 2)]), OrderedDict([('odor', u'Banane'), ('difficulty_level', 5), ('number_in_olf', 3)]), OrderedDict([('odor', u'Orange'), ('difficulty_level', 5), ('number_in_olf', 4)]), OrderedDict([('odor', u'Wasser'), ('difficulty_level', 5), ('number_in_olf', 7)]), OrderedDict([('odor', u'Leder'), ('difficulty_level', 25), ('number_in_olf', 1)]), OrderedDict([('odor', u'Holz'), ('difficulty_level', 25), ('number_in_olf', 2)]), OrderedDict([('odor', u'Banane'), ('difficulty_level', 25), ('number_in_olf', 3)]), OrderedDict([('odor', u'Orange'), ('difficulty_level', 25), ('number_in_olf', 4)]), OrderedDict([('odor', u'Wasser'), ('difficulty_level', 25), ('number_in_olf', 7)])]" valType="str"/>
+      <Param name="conditions" updates="None" val="[OrderedDict([(u'odor', u'Leder'), (u'difficulty_level', 10), (u'channel', 1)]), OrderedDict([(u'odor', u'Holz'), (u'difficulty_level', 10), (u'channel', 2)]), OrderedDict([(u'odor', u'Banane'), (u'difficulty_level', 10), (u'channel', 3)]), OrderedDict([(u'odor', u'Orange'), (u'difficulty_level', 10), (u'channel', 4)]), OrderedDict([(u'odor', u'Wasser'), (u'difficulty_level', 10), (u'channel', 7)]), OrderedDict([(u'odor', u'Leder'), (u'difficulty_level', 40), (u'channel', 1)]), OrderedDict([(u'odor', u'Holz'), (u'difficulty_level', 40), (u'channel', 2)]), OrderedDict([(u'odor', u'Banane'), (u'difficulty_level', 40), (u'channel', 3)]), OrderedDict([(u'odor', u'Orange'), (u'difficulty_level', 40), (u'channel', 4)]), OrderedDict([(u'odor', u'Wasser'), (u'difficulty_level', 40), (u'channel', 7)])]" valType="str"/>
       <Param name="Selected rows" updates="None" val="" valType="str"/>
     </LoopInitiator>
     <Routine name="Spacer"/>
     <Routine name="Tetris"/>
     <Routine name="rating_intensity"/>
     <Routine name="rating_difficulty"/>
-    <LoopTerminator name="repeats"/>
+    <LoopTerminator name="trials"/>
     <Routine name="EndText"/>
   </Flow>
 </PsychoPy2experiment>

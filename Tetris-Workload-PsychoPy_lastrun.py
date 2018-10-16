@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-This experiment was created using PsychoPy2 Experiment Builder (v1.90.3),
-    on Mon Oct  1 15:48:30 2018
+This experiment was created using PsychoPy2 Experiment Builder (v1.90.2),
+    on Tue Oct 16 11:56:57 2018
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -67,45 +67,60 @@ else:
 # Initialize components for Routine "IntroText"
 IntroTextClock = core.Clock()
 Intro1_text1 = visual.TextStim(win=win, name='Intro1_text1',
-    text=u'In diesem Experiment lassen wir sie Tetris spielen und werden Ihnen dabei die Ger\xfcche Banane, Orange, Ledern Holz sowie einen Leerduft pr\xe4sentieren.\n\nIhre Aufgabe ist es, nach Ablauf der Spielzeit die Intensit\xe4t des Geruchs zu bewerten.',
+    text=u'In diesem Experiment lassen wir Sie Tetris spielen und werden Ihnen dabei die Ger\xfcche Banane, Orange, Leder, Holz sowie einen Leerduft pr\xe4sentieren.\n\nIhre Aufgabe ist es, nach Ablauf der Spielzeit die Intensit\xe4t des Geruchs sowie den Schwierigkeitsgrad des Spiels zu bewerten.\nEs ist dabei m\xf6glich, dass Sie keinen Geruch riechen.',
     font='Arial',
-    pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
+    pos=(0, 0), height=0.08, wrapWidth=None, ori=0, 
     color='black', colorSpace='rgb', opacity=1,
     depth=0.0);
 Intro1_text2 = visual.TextStim(win=win, name='Intro1_text2',
     text=u'Weiter durch dr\xfccken der Leertaste.',
     font='Arial',
-    pos=(0, -0.5), height=0.1, wrapWidth=None, ori=0, 
+    pos=(0, -0.5), height=0.08, wrapWidth=None, ori=0, 
     color='black', colorSpace='rgb', opacity=1,
     depth=-1.0);
 
 # Initialize components for Routine "IntroText2"
 IntroText2Clock = core.Clock()
 Intro2_text = visual.TextStim(win=win, name='Intro2_text',
-    text=u'Der Geruch wird Ihnen w\xe4hrend des Spielens in Bl\xf6cken pr\xe4sentiert. Atmen sie ruhig und normal.',
+    text=u'Der Geruch wird Ihnen w\xe4hrend des Spielens in Bl\xf6cken pr\xe4sentiert. Atmen Sie ruhig und normal.',
     font='Arial',
-    pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
+    pos=(0, 0), height=0.08, wrapWidth=None, ori=0, 
     color='black', colorSpace='rgb', opacity=1,
     depth=0.0);
 intro2_text2 = visual.TextStim(win=win, name='intro2_text2',
     text=u'Weiter durch dr\xfccken der Leertaste.',
     font='Arial',
-    pos=(0, -0.5), height=0.1, wrapWidth=None, ori=0, 
+    pos=(0, -0.5), height=0.08, wrapWidth=None, ori=0, 
     color='black', colorSpace='rgb', opacity=1,
     depth=-1.0);
 
 # Initialize components for Routine "IntroText3"
 IntroText3Clock = core.Clock()
-Intro3_text = visual.TextStim(win=win, name='Intro3_text',
-    text=u'Nach jedem Duftstoff stoppt das Spiel und sie werden gebeten den Duftstoff auf einer Skala von 1-10 hinsichtlich seiner Intensit\xe4t zu bewerten.',
+intro3_text = visual.TextStim(win=win, name='intro3_text',
+    text=u'Das Spiel steuern Sie mit den Pfeiltasten sowie der Leertaste.\n\nLinke & rechte Pfeiltaste = Bewegen des Spielsteins nach links bzw. rechts\nObere Pfeiltaste = Drehen des Spielsteins\nUntere Pfeiltaste = Schnelleres Fallenlassen des Spielsteins\nLeertaste = Spielstein f\xe4llt sofort auf die tiefste Position\n',
     font='Arial',
-    pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
+    pos=(0, 0), height=0.08, wrapWidth=None, ori=0, 
     color='black', colorSpace='rgb', opacity=1,
     depth=0.0);
-Intro3_text2 = visual.TextStim(win=win, name='Intro3_text2',
-    text=u'Start des Experiments durch dr\xfccken der Leertaste.',
+intro3_text_2 = visual.TextStim(win=win, name='intro3_text_2',
+    text=u'Weiter durch dr\xfccken der Leertaste',
     font='Arial',
-    pos=(0, -0.5), height=0.1, wrapWidth=None, ori=0, 
+    pos=(0, -0.5), height=0.08, wrapWidth=None, ori=0, 
+    color='black', colorSpace='rgb', opacity=1,
+    depth=-1.0);
+
+# Initialize components for Routine "IntroText4"
+IntroText4Clock = core.Clock()
+Intro4_text = visual.TextStim(win=win, name='Intro4_text',
+    text=u'Bei jedem Geruch stoppt das Spiel nach circa einer Minute und die Applikation des Geruchs wird beendet. \nEs erscheint dann eine Bewertungsskala f\xfcr die Intensit\xe4t des vorangegangenen Geruchs und anschlie\xdfend eine f\xfcr den Schwierigkeitsgrad des Spiels.\nDie 10 steht dabei f\xfcr einen sehr intensiven Geruch bzw. einen sehr hohen Schwierigkeitsgrad und die 1 f\xfcr einen sehr schwachen Geruch bzw. einen sehr niedrigen Schwierigkeitsgrad.\n\nBitte verschieben Sie den Marker durch die linke und rechte Pfeiltaste an die gew\xfcnschte Position und best\xe4tigen Sie Ihre Eingabe mit der Eingabetaste.',
+    font='Arial',
+    pos=(0, 0.2), height=0.08, wrapWidth=None, ori=0, 
+    color='black', colorSpace='rgb', opacity=1,
+    depth=0.0);
+Intro4_text2 = visual.TextStim(win=win, name='Intro4_text2',
+    text=u'Wenn Sie keine Fragen mehr haben, k\xf6nnen Sie das Experiment durch dr\xfccken der Leertaste starten.',
+    font='Arial',
+    pos=(0, -0.8), height=0.08, wrapWidth=None, ori=0, 
     color='black', colorSpace='rgb', opacity=1,
     depth=-1.0);
 
@@ -143,19 +158,31 @@ text_val = visual.TextStim(win=win, name='text_val',
 
 # Initialize components for Routine "rating_intensity"
 rating_intensityClock = core.Clock()
-intensity = visual.RatingScale(win=win, name='intensity', marker='triangle', size=1.0, pos=[0.0, -0.4], low=1, high=10, labels=[''], scale=u'Bitte bewerten sie nun die Intensit\xe4t des vorangegangenen Duftstoffs. Dabei steht 1 f\xfcr eine niedrige Intensit\xe4t und 10 f\xfcr eine hohe Intensit\xe4t.', markerStart='5')
+intensity = visual.RatingScale(win=win, name='intensity', marker='triangle', size=2.0, pos=[0.0, -0.4], low=1, high=10, labels=[''], scale='', markerStart='5')
+text_ratingintensity = visual.TextStim(win=win, name='text_ratingintensity',
+    text='Wie intensiv haben Sie diesen Geruch empfunden?',
+    font='Arial',
+    pos=(0, 0.1), height=0.08, wrapWidth=None, ori=0, 
+    color='black', colorSpace='rgb', opacity=1,
+    depth=-1.0);
 
 # Initialize components for Routine "rating_difficulty"
 rating_difficultyClock = core.Clock()
-difficulty = visual.RatingScale(win=win, name='difficulty', marker='triangle', size=1.0, pos=[0.0, -0.4], low=1, high=10, labels=[''], scale=u'Bitte bewerten sie nun die Schwierigkeit der Runde, die sie gerade gespielt haben. 1 steht f\xfcr eine sehr einfache, 10 f\xfcr eine sehr schwere Runde.', markerStart='5')
+difficulty = visual.RatingScale(win=win, name='difficulty', marker='triangle', size=2.0, pos=[0.0, -0.4], low=1, high=10, labels=[''], scale='', markerStart='5')
+text_ratingdifficulty = visual.TextStim(win=win, name='text_ratingdifficulty',
+    text='Wie schwer fanden Sie diese Runde Tetris?',
+    font='Arial',
+    pos=(0, 0.1), height=0.08, wrapWidth=None, ori=0, 
+    color='white', colorSpace='rgb', opacity=1,
+    depth=-1.0);
 
 # Initialize components for Routine "EndText"
 EndTextClock = core.Clock()
 EndText1 = visual.TextStim(win=win, name='EndText1',
-    text='Byee...',
+    text=u'Vielen Dank f\xfcr Ihre Teilnahme.',
     font='Arial',
-    pos=(0, 0), height=0.1, wrapWidth=None, ori=0, 
-    color='white', colorSpace='rgb', opacity=1,
+    pos=(0, 0), height=0.08, wrapWidth=None, ori=0, 
+    color='black', colorSpace='rgb', opacity=1,
     depth=0.0);
 
 # Create some handy timers
@@ -320,9 +347,9 @@ IntroText3Clock.reset()  # clock
 frameN = -1
 continueRoutine = True
 # update component parameters for each repeat
-key_resp_4 = event.BuilderKeyResponse()
+key_resp_7 = event.BuilderKeyResponse()
 # keep track of which components have finished
-IntroText3Components = [Intro3_text, Intro3_text2, key_resp_4]
+IntroText3Components = [intro3_text, intro3_text_2, key_resp_7]
 for thisComponent in IntroText3Components:
     if hasattr(thisComponent, 'status'):
         thisComponent.status = NOT_STARTED
@@ -334,29 +361,29 @@ while continueRoutine:
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
     
-    # *Intro3_text* updates
-    if t >= 0.0 and Intro3_text.status == NOT_STARTED:
+    # *intro3_text* updates
+    if t >= 0.0 and intro3_text.status == NOT_STARTED:
         # keep track of start time/frame for later
-        Intro3_text.tStart = t
-        Intro3_text.frameNStart = frameN  # exact frame index
-        Intro3_text.setAutoDraw(True)
+        intro3_text.tStart = t
+        intro3_text.frameNStart = frameN  # exact frame index
+        intro3_text.setAutoDraw(True)
     
-    # *Intro3_text2* updates
-    if t >= 3.0 and Intro3_text2.status == NOT_STARTED:
+    # *intro3_text_2* updates
+    if t >= 3 and intro3_text_2.status == NOT_STARTED:
         # keep track of start time/frame for later
-        Intro3_text2.tStart = t
-        Intro3_text2.frameNStart = frameN  # exact frame index
-        Intro3_text2.setAutoDraw(True)
+        intro3_text_2.tStart = t
+        intro3_text_2.frameNStart = frameN  # exact frame index
+        intro3_text_2.setAutoDraw(True)
     
-    # *key_resp_4* updates
-    if t >= 0.0 and key_resp_4.status == NOT_STARTED:
+    # *key_resp_7* updates
+    if t >= 0.0 and key_resp_7.status == NOT_STARTED:
         # keep track of start time/frame for later
-        key_resp_4.tStart = t
-        key_resp_4.frameNStart = frameN  # exact frame index
-        key_resp_4.status = STARTED
+        key_resp_7.tStart = t
+        key_resp_7.frameNStart = frameN  # exact frame index
+        key_resp_7.status = STARTED
         # keyboard checking is just starting
         event.clearEvents(eventType='keyboard')
-    if key_resp_4.status == STARTED:
+    if key_resp_7.status == STARTED:
         theseKeys = event.getKeys(keyList=['space'])
         
         # check for quit:
@@ -390,24 +417,100 @@ for thisComponent in IntroText3Components:
 # the Routine "IntroText3" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
-# set up handler to look after randomisation of conditions etc
-repeats = data.TrialHandler(nReps=1, method='random', 
-    extraInfo=expInfo, originPath=-1,
-    trialList=data.importConditions('workload_data.xlsx'),
-    seed=None, name='repeats')
-thisExp.addLoop(repeats)  # add the loop to the experiment
-thisRepeat = repeats.trialList[0]  # so we can initialise stimuli with some values
-# abbreviate parameter names if possible (e.g. rgb = thisRepeat.rgb)
-if thisRepeat != None:
-    for paramName in thisRepeat:
-        exec('{} = thisRepeat[paramName]'.format(paramName))
+# ------Prepare to start Routine "IntroText4"-------
+t = 0
+IntroText4Clock.reset()  # clock
+frameN = -1
+continueRoutine = True
+# update component parameters for each repeat
+key_resp_4 = event.BuilderKeyResponse()
+# keep track of which components have finished
+IntroText4Components = [Intro4_text, Intro4_text2, key_resp_4]
+for thisComponent in IntroText4Components:
+    if hasattr(thisComponent, 'status'):
+        thisComponent.status = NOT_STARTED
 
-for thisRepeat in repeats:
-    currentLoop = repeats
-    # abbreviate parameter names if possible (e.g. rgb = thisRepeat.rgb)
-    if thisRepeat != None:
-        for paramName in thisRepeat:
-            exec('{} = thisRepeat[paramName]'.format(paramName))
+# -------Start Routine "IntroText4"-------
+while continueRoutine:
+    # get current time
+    t = IntroText4Clock.getTime()
+    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+    # update/draw components on each frame
+    
+    # *Intro4_text* updates
+    if t >= 0.0 and Intro4_text.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        Intro4_text.tStart = t
+        Intro4_text.frameNStart = frameN  # exact frame index
+        Intro4_text.setAutoDraw(True)
+    
+    # *Intro4_text2* updates
+    if t >= 3.0 and Intro4_text2.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        Intro4_text2.tStart = t
+        Intro4_text2.frameNStart = frameN  # exact frame index
+        Intro4_text2.setAutoDraw(True)
+    
+    # *key_resp_4* updates
+    if t >= 0.0 and key_resp_4.status == NOT_STARTED:
+        # keep track of start time/frame for later
+        key_resp_4.tStart = t
+        key_resp_4.frameNStart = frameN  # exact frame index
+        key_resp_4.status = STARTED
+        # keyboard checking is just starting
+        event.clearEvents(eventType='keyboard')
+    if key_resp_4.status == STARTED:
+        theseKeys = event.getKeys(keyList=['space'])
+        
+        # check for quit:
+        if "escape" in theseKeys:
+            endExpNow = True
+        if len(theseKeys) > 0:  # at least one key was pressed
+            # a response ends the routine
+            continueRoutine = False
+    
+    # check if all components have finished
+    if not continueRoutine:  # a component has requested a forced-end of Routine
+        break
+    continueRoutine = False  # will revert to True if at least one component still running
+    for thisComponent in IntroText4Components:
+        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+            continueRoutine = True
+            break  # at least one component has not yet finished
+    
+    # check for quit (the Esc key)
+    if endExpNow or event.getKeys(keyList=["escape"]):
+        core.quit()
+    
+    # refresh the screen
+    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+        win.flip()
+
+# -------Ending Routine "IntroText4"-------
+for thisComponent in IntroText4Components:
+    if hasattr(thisComponent, "setAutoDraw"):
+        thisComponent.setAutoDraw(False)
+# the Routine "IntroText4" was not non-slip safe, so reset the non-slip timer
+routineTimer.reset()
+
+# set up handler to look after randomisation of conditions etc
+trials = data.TrialHandler(nReps=4, method='random', 
+    extraInfo=expInfo, originPath=-1,
+    trialList=data.importConditions(u'trials-data.xlsx'),
+    seed=None, name='trials')
+thisExp.addLoop(trials)  # add the loop to the experiment
+thisTrial = trials.trialList[0]  # so we can initialise stimuli with some values
+# abbreviate parameter names if possible (e.g. rgb = thisTrial.rgb)
+if thisTrial != None:
+    for paramName in thisTrial:
+        exec('{} = thisTrial[paramName]'.format(paramName))
+
+for thisTrial in trials:
+    currentLoop = trials
+    # abbreviate parameter names if possible (e.g. rgb = thisTrial.rgb)
+    if thisTrial != None:
+        for paramName in thisTrial:
+            exec('{} = thisTrial[paramName]'.format(paramName))
     
     # ------Prepare to start Routine "Spacer"-------
     t = 0
@@ -468,7 +571,7 @@ for thisRepeat in repeats:
     continueRoutine = True
     # update component parameters for each repeat
     # to decrease runtime to speed up testing
-    runtime = 5 # usualy runtime = 56
+    runtime = 56 # usualy runtime = 56
     
     logging.log(level=logging.EXP, msg='Starting Tetris ...')
     returnval = tetris.main(difficulty_level-1, runtime, thisExp, port, channel, logging)
@@ -554,9 +657,9 @@ for thisRepeat in repeats:
     # check responses
     if key_resp_5.keys in ['', [], None]:  # No response was made
         key_resp_5.keys=None
-    repeats.addData('key_resp_5.keys',key_resp_5.keys)
+    trials.addData('key_resp_5.keys',key_resp_5.keys)
     if key_resp_5.keys != None:  # we had a response
-        repeats.addData('key_resp_5.rt', key_resp_5.rt)
+        trials.addData('key_resp_5.rt', key_resp_5.rt)
     # the Routine "Tetris" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
     
@@ -568,7 +671,7 @@ for thisRepeat in repeats:
     # update component parameters for each repeat
     intensity.reset()
     # keep track of which components have finished
-    rating_intensityComponents = [intensity]
+    rating_intensityComponents = [intensity, text_ratingintensity]
     for thisComponent in rating_intensityComponents:
         if hasattr(thisComponent, 'status'):
             thisComponent.status = NOT_STARTED
@@ -586,6 +689,13 @@ for thisRepeat in repeats:
             intensity.frameNStart = frameN  # exact frame index
             intensity.setAutoDraw(True)
         continueRoutine &= intensity.noResponse  # a response ends the trial
+        
+        # *text_ratingintensity* updates
+        if t >= 0.0 and text_ratingintensity.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            text_ratingintensity.tStart = t
+            text_ratingintensity.frameNStart = frameN  # exact frame index
+            text_ratingintensity.setAutoDraw(True)
         
         # check if all components have finished
         if not continueRoutine:  # a component has requested a forced-end of Routine
@@ -608,9 +718,9 @@ for thisRepeat in repeats:
     for thisComponent in rating_intensityComponents:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
-    # store data for repeats (TrialHandler)
-    repeats.addData('intensity.response', intensity.getRating())
-    repeats.addData('intensity.rt', intensity.getRT())
+    # store data for trials (TrialHandler)
+    trials.addData('intensity.response', intensity.getRating())
+    trials.addData('intensity.rt', intensity.getRT())
     # the Routine "rating_intensity" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
     
@@ -622,7 +732,7 @@ for thisRepeat in repeats:
     # update component parameters for each repeat
     difficulty.reset()
     # keep track of which components have finished
-    rating_difficultyComponents = [difficulty]
+    rating_difficultyComponents = [difficulty, text_ratingdifficulty]
     for thisComponent in rating_difficultyComponents:
         if hasattr(thisComponent, 'status'):
             thisComponent.status = NOT_STARTED
@@ -640,6 +750,13 @@ for thisRepeat in repeats:
             difficulty.frameNStart = frameN  # exact frame index
             difficulty.setAutoDraw(True)
         continueRoutine &= difficulty.noResponse  # a response ends the trial
+        
+        # *text_ratingdifficulty* updates
+        if t >= 0.0 and text_ratingdifficulty.status == NOT_STARTED:
+            # keep track of start time/frame for later
+            text_ratingdifficulty.tStart = t
+            text_ratingdifficulty.frameNStart = frameN  # exact frame index
+            text_ratingdifficulty.setAutoDraw(True)
         
         # check if all components have finished
         if not continueRoutine:  # a component has requested a forced-end of Routine
@@ -662,24 +779,13 @@ for thisRepeat in repeats:
     for thisComponent in rating_difficultyComponents:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
-    # store data for repeats (TrialHandler)
-    repeats.addData('difficulty.response', difficulty.getRating())
-    repeats.addData('difficulty.rt', difficulty.getRT())
+    # store data for trials (TrialHandler)
+    trials.addData('difficulty.response', difficulty.getRating())
+    trials.addData('difficulty.rt', difficulty.getRT())
     # the Routine "rating_difficulty" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
-    thisExp.nextEntry()
-    
-# completed 1 repeats of 'repeats'
+# completed 4 repeats of 'trials'
 
-# get names of stimulus parameters
-if repeats.trialList in ([], [None], None):
-    params = []
-else:
-    params = repeats.trialList[0].keys()
-# save data for this loop
-repeats.saveAsExcel(filename + '.xlsx', sheetName='repeats',
-    stimOut=params,
-    dataOut=['n','all_mean','all_std', 'all_raw'])
 
 # ------Prepare to start Routine "EndText"-------
 t = 0
@@ -702,12 +808,12 @@ while continueRoutine and routineTimer.getTime() > 0:
     # update/draw components on each frame
     
     # *EndText1* updates
-    if t >= 0.0 and EndText1.status == NOT_STARTED:
+    if t >= 0 and EndText1.status == NOT_STARTED:
         # keep track of start time/frame for later
         EndText1.tStart = t
         EndText1.frameNStart = frameN  # exact frame index
         EndText1.setAutoDraw(True)
-    frameRemains = 0.0 + 5.0- win.monitorFramePeriod * 0.75  # most of one frame period left
+    frameRemains = 0 + 5- win.monitorFramePeriod * 0.75  # most of one frame period left
     if EndText1.status == STARTED and t >= frameRemains:
         EndText1.setAutoDraw(False)
     
