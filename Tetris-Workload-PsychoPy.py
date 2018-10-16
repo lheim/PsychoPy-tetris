@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy2 Experiment Builder (v1.90.2),
-    on Tue Oct 16 15:00:50 2018
+    on Tue Oct 16 13:57:51 2018
 If you publish work using this script please cite the PsychoPy publications:
     Peirce, JW (2007) PsychoPy - Psychophysics software in Python.
         Journal of Neuroscience Methods, 162(1-2), 8-13.
@@ -40,7 +40,7 @@ filename = _thisDir + os.sep + u'data/%s_%s_%s' % (expInfo['participant'], expNa
 # An ExperimentHandler isn't essential but helps with data saving
 thisExp = data.ExperimentHandler(name=expName, version='',
     extraInfo=expInfo, runtimeInfo=None,
-    originPath=u'/Users/nope/ownCloud/work/uka/code/psychoPy/psychoPy-tetris/Tetris-Workload-PsychoPy.psyexp',
+    originPath=None,
     savePickle=True, saveWideText=True,
     dataFileName=filename)
 # save a log file for detail verbose info
@@ -175,10 +175,6 @@ text_ratingdifficulty = visual.TextStim(win=win, name='text_ratingdifficulty',
     pos=(0, 0.1), height=0.08, wrapWidth=None, ori=0, 
     color='white', colorSpace='rgb', opacity=1,
     depth=-1.0);
-
-# Initialize components for Routine "nextRow"
-nextRowClock = core.Clock()
-
 
 # Initialize components for Routine "EndText"
 EndTextClock = core.Clock()
@@ -498,7 +494,7 @@ for thisComponent in IntroText4Components:
 routineTimer.reset()
 
 # set up handler to look after randomisation of conditions etc
-trials = data.TrialHandler(nReps=2, method='random', 
+trials = data.TrialHandler(nReps=1, method='random', 
     extraInfo=expInfo, originPath=-1,
     trialList=data.importConditions(u'trials-data-short.xlsx'),
     seed=None, name='trials')
@@ -581,8 +577,6 @@ for thisTrial in trials:
     print("The current odor is %s in channel %d" %(odor, channel))
     returnval = tetris.main(difficulty_level-1, runtime, thisExp, trials, port, channel, logging)
     logging.log(level=logging.EXP, msg= 'Tetris returned: %d' %returnval)
-    
-    trials.addData('trial.test', odor)
     
     # to remove
     print('Tetris returned: %d' %returnval)
@@ -791,53 +785,7 @@ for thisTrial in trials:
     trials.addData('difficulty.rt', difficulty.getRT())
     # the Routine "rating_difficulty" was not non-slip safe, so reset the non-slip timer
     routineTimer.reset()
-    
-    # ------Prepare to start Routine "nextRow"-------
-    t = 0
-    nextRowClock.reset()  # clock
-    frameN = -1
-    continueRoutine = True
-    # update component parameters for each repeat
-    thisExp.nextEntry()
-    # keep track of which components have finished
-    nextRowComponents = []
-    for thisComponent in nextRowComponents:
-        if hasattr(thisComponent, 'status'):
-            thisComponent.status = NOT_STARTED
-    
-    # -------Start Routine "nextRow"-------
-    while continueRoutine:
-        # get current time
-        t = nextRowClock.getTime()
-        frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-        # update/draw components on each frame
-        
-        
-        # check if all components have finished
-        if not continueRoutine:  # a component has requested a forced-end of Routine
-            break
-        continueRoutine = False  # will revert to True if at least one component still running
-        for thisComponent in nextRowComponents:
-            if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-                continueRoutine = True
-                break  # at least one component has not yet finished
-        
-        # check for quit (the Esc key)
-        if endExpNow or event.getKeys(keyList=["escape"]):
-            core.quit()
-        
-        # refresh the screen
-        if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-            win.flip()
-    
-    # -------Ending Routine "nextRow"-------
-    for thisComponent in nextRowComponents:
-        if hasattr(thisComponent, "setAutoDraw"):
-            thisComponent.setAutoDraw(False)
-    
-    # the Routine "nextRow" was not non-slip safe, so reset the non-slip timer
-    routineTimer.reset()
-# completed 2 repeats of 'trials'
+# completed 1 repeats of 'trials'
 
 
 # ------Prepare to start Routine "EndText"-------
@@ -893,7 +841,6 @@ for thisComponent in EndTextComponents:
         thisComponent.setAutoDraw(False)
 if port != 'none':
     port.close()
-
 # these shouldn't be strictly necessary (should auto-save)
 thisExp.saveAsWideText(filename+'.csv')
 thisExp.saveAsPickle(filename)

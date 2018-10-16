@@ -18,6 +18,8 @@ from threading import Lock, Thread, Event
 
 
 import serial
+from datetime import datetime
+
 
 ################################################################################
 
@@ -346,7 +348,7 @@ def check(board,screen):
             rows = map(lambda y: y+1,rows)
     return lrows
 
-def game(screen, startinglevel, runtime, startTime, thisExp, olf_event):
+def game(screen, startinglevel, runtime, startTime, trials, olf_event):
     """
     The tetris-game itself. Handles user input to move, etc.
     """
@@ -378,17 +380,20 @@ def game(screen, startinglevel, runtime, startTime, thisExp, olf_event):
         if elapsed_time > runtime/2 and OLF_STATUS != 'ON':
             print("TETRIS: Setting OLF_EVENT. Thread will continue if enabled.")
             OLF_STATUS = 'ON'
-            thisExp.addData('tetris.olf_on-time', elapsed_time)
+            trials.addData('tetris.olf_on-time', elapsed_time)
             olf_event.set()
 
 
         # game over
         if elapsed_time > runtime:
             olf_event.clear()
-            thisExp.addData('tetris.score', cleared)
-            thisExp.addData('tetris.dropped_pieces', pieces)
-            thisExp.addData('tetris.space_pressed', space_pressed)
-            thisExp.addData('tetris.elapsed_time', elapsed_time)
+            trials.addData('tetris.score', cleared)
+            trials.addData('tetris.dropped_pieces', pieces)
+            trials.addData('tetris.space_pressed', space_pressed)
+            trials.addData('tetris.elapsed_time', elapsed_time)
+            trials.addData('unixtime', '%.3f' %time.time())
+            trials.addData('time', datetime.now().strftime("%H:%M:%S.%f"))
+
             return -5
 
         level = cleared/10 + startinglevel
@@ -408,10 +413,14 @@ def game(screen, startinglevel, runtime, startTime, thisExp, olf_event):
                 elif event.key == pygame.K_UP:
                     shaperotate(tetrimino,board)
                 elif event.key == pygame.K_q:
-                    thisExp.addData('tetris.score', cleared)
-                    thisExp.addData('tetris.dropped_pieces', pieces)
-                    thisExp.addData('tetris.space_pressed', space_pressed)
-                    thisExp.addData('tetris.elapsed_time', elapsed_time)
+                    trials.addData('tetris.score', cleared)
+                    trials.addData('tetris.dropped_pieces', pieces)
+                    trials.addData('tetris.space_pressed', space_pressed)
+                    trials.addData('tetris.elapsed_time', elapsed_time)
+                    trials.addData('unixtime', '%.3f' %time.time())
+                    trials.addData('time', datetime.now().strftime("%H:%M:%S.%f"))
+
+
                     return -1
                 elif event.key == pygame.K_SPACE:
                     space_pressed += 1
@@ -451,10 +460,12 @@ def game(screen, startinglevel, runtime, startTime, thisExp, olf_event):
             for (x,y) in coords:
                 if board[x][y]!='':
                     # returnstatus = gameover(screen)
-                    thisExp.addData('tetris.score', cleared)
-                    thisExp.addData('tetris.dropped_pieces', pieces)
-                    thisExp.addData('tetris.space_pressed', space_pressed)
-                    thisExp.addData('tetris.elapsed_time', elapsed_time)
+                    trials.addData('tetris.score', cleared)
+                    trials.addData('tetris.dropped_pieces', pieces)
+                    trials.addData('tetris.space_pressed', space_pressed)
+                    trials.addData('tetris.elapsed_time', elapsed_time)
+                    trials.addData('unixtime', '%.3f' %time.time())
+                    trials.addData('time', datetime.now().strftime("%H:%M:%S.%f"))
 
                     return 1
         else:
@@ -519,7 +530,7 @@ def startOLF(olf_event, olf, com_channel, runtime):
 
 
 
-def main(startingLevel, runtime, thisExp, olf_serial, com_channel, logging):
+def main(startingLevel, runtime, thisExp, trials, olf_serial, com_channel, logging):
     makeblockimages()
     pygame.init()
     size = (341,700)
@@ -542,7 +553,8 @@ def main(startingLevel, runtime, thisExp, olf_serial, com_channel, logging):
         print("TETRIS: OLF port is set to 'none' - not starting OLF thread")
     global OLF_STATUS
 
-
+    # move to nextEntry to not overlap with previous responses
+    #thisExp.nextEntry()
 
     while True:
 
@@ -552,17 +564,16 @@ def main(startingLevel, runtime, thisExp, olf_serial, com_channel, logging):
         logging.log(level=logging.DATA, msg= 'TETRIS: Trial %d' %trial)
 
 
-        thisExp.addData('tetris.level', startingLevel)
-        thisExp.addData('tetris.trial', trial)
+        trials.addData('tetris.level', startingLevel)
+        trials.addData('tetris.trial', trial)
 
 
-        x = game(screen, startingLevel, runtime, startTime, thisExp, olf_event)
+        x = game(screen, startingLevel, runtime, startTime, trials, olf_event)
 
 
 
         if x == -1: # pressed escape
-            thisExp.addData('tetris.quit', 'pressed q')
-            thisExp.nextEntry()
+            trials.addData('tetris.quit', 'pressed q')
             print("TETRIS: pressed Q - killing")
             if olf != 'none':
                 print("TETRIS: waiting for thread to join")
@@ -573,13 +584,12 @@ def main(startingLevel, runtime, thisExp, olf_serial, com_channel, logging):
             return x
         elif x == 1: # gameover, repeat if time not elapsed
             print("TETRIS: Gameover")
-            thisExp.addData('tetris.quit', 'gameover')
+            trials.addData('tetris.quit', 'gameover')
             thisExp.nextEntry()
             continue
         elif x == -5:
             print("TETRIS: Time elapsed") # time elapsed, quit
-            thisExp.addData('tetris.quit', 'time elapsed')
-            thisExp.nextEntry()
+            trials.addData('tetris.quit', 'time elapsed')
             if olf != 'none':
                 print("TETRIS: waiting for thread to join")
                 olf_thread.join()
