@@ -16,6 +16,7 @@ import pygame
 from psychopy import logging
 from threading import Lock, Thread, Event
 
+import os
 
 import serial
 from datetime import datetime
@@ -380,7 +381,10 @@ def game(screen, startinglevel, runtime, startTime, trials, olf_event):
         if elapsed_time > runtime/2 and OLF_STATUS != 'ON':
             print("TETRIS: Setting OLF_EVENT. Thread will continue if enabled.")
             OLF_STATUS = 'ON'
-            trials.addData('tetris.olf_on-time', elapsed_time)
+            trials.addData('tetris.olf_on-elapsed-time', elapsed_time)
+            trials.addData('tetris.olf_on-unixtime', '%.3f' %time.time())
+            trials.addData('tetris.olf_on-time', datetime.now().strftime("%H:%M:%S.%f"))
+
             olf_event.set()
 
 
@@ -391,8 +395,8 @@ def game(screen, startinglevel, runtime, startTime, trials, olf_event):
             trials.addData('tetris.dropped_pieces', pieces)
             trials.addData('tetris.space_pressed', space_pressed)
             trials.addData('tetris.elapsed_time', elapsed_time)
-            trials.addData('unixtime', '%.3f' %time.time())
-            trials.addData('time', datetime.now().strftime("%H:%M:%S.%f"))
+            trials.addData('end_unixtime', '%.3f' %time.time())
+            trials.addData('end_time', datetime.now().strftime("%H:%M:%S.%f"))
 
             return -5
 
@@ -417,8 +421,8 @@ def game(screen, startinglevel, runtime, startTime, trials, olf_event):
                     trials.addData('tetris.dropped_pieces', pieces)
                     trials.addData('tetris.space_pressed', space_pressed)
                     trials.addData('tetris.elapsed_time', elapsed_time)
-                    trials.addData('unixtime', '%.3f' %time.time())
-                    trials.addData('time', datetime.now().strftime("%H:%M:%S.%f"))
+                    trials.addData('end_unixtime', '%.3f' %time.time())
+                    trials.addData('end_time', datetime.now().strftime("%H:%M:%S.%f"))
 
 
                     return -1
@@ -464,8 +468,8 @@ def game(screen, startinglevel, runtime, startTime, trials, olf_event):
                     trials.addData('tetris.dropped_pieces', pieces)
                     trials.addData('tetris.space_pressed', space_pressed)
                     trials.addData('tetris.elapsed_time', elapsed_time)
-                    trials.addData('unixtime', '%.3f' %time.time())
-                    trials.addData('time', datetime.now().strftime("%H:%M:%S.%f"))
+                    trials.addData('end_unixtime', '%.3f' %time.time())
+                    trials.addData('end_time', datetime.now().strftime("%H:%M:%S.%f"))
 
                     return 1
         else:
@@ -532,6 +536,13 @@ def startOLF(olf_event, olf, com_channel, runtime):
 
 def main(startingLevel, runtime, thisExp, trials, olf_serial, com_channel, logging):
     makeblockimages()
+
+    # Set Window Position: https://www.pygame.org/wiki/SettingWindowPosition
+    pos_x = 0
+    pos_y = 0
+    os.environ['SDL_VIDEO_WINDOW_POS'] = '%i,%i' % (pos_x,pos_y)
+
+
     pygame.init()
     size = (341,700)
     screen = pygame.display.set_mode(size)
